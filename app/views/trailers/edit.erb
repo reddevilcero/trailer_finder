@@ -1,4 +1,5 @@
-<form action="/trailers" method="post">
+<form action="/trailers/<%= @trailer.trailer_number %>" method="post">
+<input type="hidden" name="_method" value="patch" id="hidden"> 
 
   <label for="trailer_number">Trailer Identifier: </label><br>
   <input type="text" name="trailer[trailer_number]" id="trailer_number" value= '<%= @trailer.trailer_number %>' required><br>
@@ -17,6 +18,6 @@
   <label for="no">No</label>
   <input type="radio" name="trailer[vor]" id="No" <%= 'checked' if  @trailer.vor == false  %> value= 0>
 
-  <input type="submit" value="Create New Trailer">
+  <input type="submit" value="Edit Trailer">
 
 </form>
