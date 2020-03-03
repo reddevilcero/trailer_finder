@@ -29,8 +29,6 @@ class TrailersController < ApplicationController
 
   get "/trailers/:trailer_number/edit" do
     @trailer = Trailer.find_by(trailer_number: params[:trailer_number]) 
-
-
     erb :"/trailers/edit"
   end
 
