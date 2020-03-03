@@ -1,1 +1,32 @@
 <h1>Insert the form to create a new instance of your model.</h1>
+
+<form action="/trailers" method="post">
+
+  <label for="trailer_number">Trailer Identifier: </label><br>
+  <input type="text" name="trailer[trailer_number]" id="trailer_number" required><br>
+  
+  <label for="trailer_depot"> Select Branch: </label><br>
+  <select name="trailer[depot_id]" id="trailer_depot">
+    <% Depot.all.each do |depot| %>
+      <option value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %></option>
+    <% end %>
+  </select><br>
+  <label for="make">Select Manufacturer: </label><br>
+  <select name="trailer[make]" id="make">
+    <option value="CARTWRIGHT">CARTWRIGHT</option>
+    <option value="KRONE">KRONE</option>
+    <option value="MONTRACON">MONTRACON</option>
+    <option value="SCHMITZ">SCHMITZ</option>
+    <option value="FRUEHAUF">FRUEHAUF</option>
+  </select><br>
+  <label for="mot_date">Next MOT due: </label><br>
+  <input type="date" name="trailer[mot_date]" id="mot_date"><br>
+  <p>Is VOR?</p>
+  <label for="vor">Yes</label>
+  <input type="radio" name="trailer[vor]" id="Yes" value= 1>
+  <label for="no">No</label>
+  <input type="radio" name="trailer[vor]" id="No" checked value= 0>
+
+  <input type="submit" value="Create New Trailer">
+
+</form>
