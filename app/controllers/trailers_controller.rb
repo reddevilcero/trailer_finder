@@ -11,18 +11,20 @@ class TrailersController < ApplicationController
 
  
   post "/trailers" do
-    trailer = trailer.new(params[:trailer])
+    trailer = Trailer.new(params[:trailer])
     if trailer.save
-      redirect "/trailers/#{trailer_number}"
+      flash[:success] ='New Trailer Successfully created'
+      redirect "/trailers/#{trailer.trailer_number}"
     else
-      
+      flash[:error] = trailer.errors.full_messages.first
+      redirect '/trailers/new'
     end
     
   end
 
   
   get "/trailers/:trailer_number" do
-    @trailer = Trailer.find_by_trailer_number(params[:trailer_number])
+    @trailer = Trailer.find_by(trailer_number: params[:trailer_number])
     erb :"/trailers/show"
   end
 

@@ -12,7 +12,8 @@
     <% end %>
   </select><br>
   <label for="make">Select Manufacturer: </label><br>
-  <select name="trailer[make]" id="make">
+  <select name="trailer[make]" id="make" required>
+    <option value=""></option>
     <option value="CARTWRIGHT">CARTWRIGHT</option>
     <option value="KRONE">KRONE</option>
     <option value="MONTRACON">MONTRACON</option>
@@ -20,7 +21,7 @@
     <option value="FRUEHAUF">FRUEHAUF</option>
   </select><br>
   <label for="mot_date">Next MOT due: </label><br>
-  <input type="date" name="trailer[mot_date]" id="mot_date"><br>
+  <input type="date" name="trailer[mot_date]" id="mot_date" required><br>
   <p>Is VOR?</p>
   <label for="vor">Yes</label>
   <input type="radio" name="trailer[vor]" id="Yes" value= 1>
