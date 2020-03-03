@@ -1,0 +1,22 @@
+<form action="/trailers" method="post">
+
+  <label for="trailer_number">Trailer Identifier: </label><br>
+  <input type="text" name="trailer[trailer_number]" id="trailer_number" value= '<%= @trailer.trailer_number %>' required><br>
+  
+  <label for="trailer_depot"> Select Branch: </label><br>
+  <select name="trailer[depot_id]" id="trailer_depot">
+    <% Depot.all.each do |depot| %>
+      <option <%= 'selected' if depot.id == @trailer.depot.id %> value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %></option>
+    <% end %>
+  </select><br>
+  <label for="mot_date">Next MOT due: </label><br>
+  <input type="date" name="trailer[mot_date]" id="mot_date" value='<%= @trailer.mot_date %>' required><br>
+  <p>Is VOR?</p>
+  <label for="vor">Yes</label>
+  <input type="radio" name="trailer[vor]" id="Yes" <%= 'checked' if @trailer.vor %> value= 1>
+  <label for="no">No</label>
+  <input type="radio" name="trailer[vor]" id="No" <%= 'checked' if  @trailer.vor == false  %> value= 0>
+
+  <input type="submit" value="Create New Trailer">
+
+</form>
