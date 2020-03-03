@@ -14,7 +14,7 @@ class TrailersController < ApplicationController
     trailer = Trailer.new(params[:trailer])
     if trailer.save
       flash[:success] ='New Trailer Successfully created'
-      redirect "/trailers/#{trailer.trailer_number}"
+      redirect "/trailers/#{trailer.identifier}"
     else
       flash[:error] = trailer.errors.full_messages.first
       redirect '/trailers/new'
@@ -22,32 +22,33 @@ class TrailersController < ApplicationController
     
   end
 
-  get "/trailers/:trailer_number" do
-    @trailer = Trailer.find_by(trailer_number: params[:trailer_number])
+  get "/trailers/:identifier" do
+    @trailer = Trailer.find_by(identifier: params[:identifier])
     erb :"/trailers/show"
   end
 
-  get "/trailers/:trailer_number/edit" do
-    @trailer = Trailer.find_by(trailer_number: params[:trailer_number]) 
+  get "/trailers/:identifier/edit" do
+    @trailer = Trailer.find_by(identifier: params[:identifier]) 
     erb :"/trailers/edit"
   end
 
-  patch "/trailers/:trailer_number" do
-    trailer = Trailer.find_by(trailer_number: params[:trailer_number])
+  patch "/trailers/:identifier" do
+    trailer = Trailer.find_by(identifier: params[:identifier])
+    # binding.pry
     if trailer.update(params[:trailer])
       flash[:success] ='Trailer Successfully Update'
-      redirect "/trailers/#{trailer.trailer_number}"
+      redirect "/trailers/#{trailer.identifier}"
     else
       flash[:error] = trailer.errors.full_messages.first
-      redirect "/trailers/#{params[:trailer_number]}/edit"
+      redirect "/trailers/#{params[:identifier]}/edit"
     end
     
   end
 
-  delete "/trailers/:trailer_number/delete" do
-    trailer = Trailer.find_by(trailer_number: params[:trailer_number])
+  delete "/trailers/:identifier/delete" do
+    trailer = Trailer.find_by(identifier: params[:identifier])
     trailer.destroy
-    flash[:warning] = "The Trailer #{params[:trailer_number]} has been delete"
+    flash[:warning] = "The Trailer #{params[:identifier]} has been delete"
     redirect "/trailers"
   end
 end

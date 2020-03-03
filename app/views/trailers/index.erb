@@ -2,12 +2,12 @@
 
 <% Trailer.all.each do |trailer| %>
   <div class="trailer_wrap">
-    <h5><%= trailer.trailer_number %></h5>
+    <h5><%= trailer.identifier %></h5>
     <p><%= trailer.depot.name %> - <%= trailer.depot.location %> </p>
     <% if trailer.vor %>
       <p>VOR</p>
     <% end %>
-    <button><a href="/trailers/<%= trailer.trailer_number %>">Show details</a></button>
+    <button><a href="/trailers/<%= trailer.identifier %>">Show details</a></button>
   </div>
   
 <% end %>

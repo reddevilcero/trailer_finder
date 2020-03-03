@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_145814) do
+ActiveRecord::Schema.define(version: 2020_03_03_205703) do
 
   create_table "admins", force: :cascade do |t|
     t.string "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_03_03_145814) do
   end
 
   create_table "trailers", force: :cascade do |t|
-    t.string "trailer_number"
+    t.string "identifier"
     t.string "make"
     t.boolean "vor"
     t.date "mot_date"

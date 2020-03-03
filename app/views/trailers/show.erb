@@ -1,11 +1,11 @@
 <h1>This is the show page for an individual instance of your model.</h1>
 
  
-<%= @trailer.trailer_number %>
+<%= @trailer.identifier %>
 
-<button><a href="/trailers/<%= @trailer.trailer_number %>/edit">Edit Trailer</a></button>
+<button><a href="/trailers/<%= @trailer.identifier %>/edit">Edit Trailer</a></button>
 
-<form action="/trailers/<%= @trailer.trailer_number %>/delete" method="post">
+<form action="/trailers/<%= @trailer.identifier %>/delete" method="post">
   <input type="hidden" name="_method" id='hidden' value='delete'>
   <input type="submit" value="Delete">
 </form>
