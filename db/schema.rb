@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_205703) do
-
-  create_table "admins", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.boolean "is_admin?"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "depot_id"
-  end
+ActiveRecord::Schema.define(version: 2020_03_04_114959) do
 
   create_table "depots", force: :cascade do |t|
     t.string "name"
@@ -35,6 +26,19 @@ ActiveRecord::Schema.define(version: 2020_03_03_205703) do
     t.boolean "vor"
     t.date "mot_date"
     t.integer "depot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "workers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "is_admin?", default: false
+    t.string "rol"
+    t.integer "seniority"
+    t.string "license"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
