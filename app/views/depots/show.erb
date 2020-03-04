@@ -1,3 +1,6 @@
 <h1>This is the show page for an individual instance of your model.</h1>
 
 <h1><%= @depot.normalize %></h1>
+<% if @depot.admin %>
+  <p><%= @depot.admin.name %></p>
+<% end %>

@@ -1,7 +1,7 @@
 class DepotsController < ApplicationController
   
   get "/depots" do
-    # binding.pry
+    @depots = Depot.all
     erb :"/depots/index"
   end
 
@@ -10,6 +10,13 @@ class DepotsController < ApplicationController
   end
 
   post "/depots" do
+    depot = Depot.new(params[:depot])
+    if depot.admin_id.nil?
+      depot.admin = Admin.new(params[:admin])
+    end
+    depot.save
+    admin = Admin.find_by_id(depot.admin_id)
+    admin.update(depot_id:depot.id)
     redirect "/depots"
   end
 
