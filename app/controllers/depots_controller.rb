@@ -25,7 +25,7 @@ class DepotsController < ApplicationController
     if @depot
       erb :"/depots/show"
     else
-      erb :'404'
+      erb :'errors/404'
     end
     
   end
@@ -35,7 +35,7 @@ class DepotsController < ApplicationController
     if @depot
       erb :"/depots/edit"
     else
-      erb :'404'
+      erb :'errors/404'
     end
     
   end
