@@ -4,8 +4,10 @@
   <div class="depot_wrap">
     <h2><%= depot.name %> <%= depot.location %></h2>
     <p><%= depot.trailers.count %></p>
-    <% if depot.admin %>
-      <p><%= depot.admin.name %></p>
+    <% if depot.admins %>
+      <% depot.admins.each do |admin| %>
+        <p><%= admin.full_name %></p>
+      <% end %>
     <% end %>
 
     <button><a href="/depots/<%= depot.slug %>">More info</a></button>

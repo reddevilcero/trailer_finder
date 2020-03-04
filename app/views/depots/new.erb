@@ -2,23 +2,8 @@
 
 <form action="/depots" method="post">
   <label for="name">Depot Branch</label><br>
-  <input type="text" name="depot[name]" id="name"><br>
+  <input type="text" name="depot[name]" id="name" required ><br>
   <label for="location">New Location Depot</label><br>
-  <input type="text" name='depot[location]' id='location'><br>
-  <label for="admin">Select a previous Admin: </label><br>
-  <select name="depot[admin_id]" id="admin">
-    <option></option>
-    <% Admin.all.each do |admin| %>
-      <option value="<%= admin.id %>"><%= admin.name %></option>
-    <% end %>
-  </select><br>
-  <p>OR Create a new Admin</p>
-  
-  <label for="admin_name">Admin name: </label><br>
-  <input type="text" name="admin[name]" id="admin_name"><br>
-  <label for="admin_email">Admin Email: </label><br>
-  <input type="email" name="admin[email]" id="admin_email">
-  <input type="hidden" name="admin[is_admin?]" value=1>
-  <br><br>
+  <input type="text" name='depot[location]' id='location' required><br>
   <input type="submit" value="Create">
 </form>

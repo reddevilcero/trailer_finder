@@ -10,13 +10,13 @@ class DepotsController < ApplicationController
   end
 
   post "/depots" do
-    depot = Depot.new(params[:depot])
-    if depot.admin_id.nil?
-      depot.admin = Admin.new(params[:admin])
+    if !Helpers.params_empty?(params[:depot])
+      depot = Depot.create(params[:depot])
+    else
+      flash[:error] = "Please Fill out all the fields"
+      redirect "/depots/new"
+
     end
-    depot.save
-    admin = Admin.find_by_id(depot.admin_id)
-    admin.update(depot_id:depot.id)
     redirect "/depots"
   end
 
@@ -42,17 +42,18 @@ class DepotsController < ApplicationController
 
   patch "/depots/:slug" do
     depot = Depot.find_by_slug(params[:slug])
-    if Helpers.params_empty?(params[:admin])
+    if !Helpers.params_empty?(params[:depot])
       depot.update(params[:depot])
     else
-      depot.update(params[:depot])
-      depot.build_admin(params[:admin])
+      flash[:error] = "Please Fill out all the fields"
+      redirect "/depots/#{depot.slug}/edit"
     end
-    depot.save
     redirect "/depots/#{depot.slug}"
   end
 
   delete "/depots/:slug/delete" do
+    depot = Depot.find_by_slug(params[:slug])
+    depot.destroy
     redirect "/depots"
   end
 end
