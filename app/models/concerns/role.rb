@@ -1,4 +1,4 @@
-class Roles
+class Role
 
   def self.all
     ['driver', 'admin', 'other']

@@ -1,8 +1,12 @@
 class Helpers 
 
   def self.params_empty?(params)
-    params.any? do |k,v|
-    v.empty?
+    if !params.empty? 
+      params.any? do |k,v|
+        v.empty?
+      end
+    else
+      params.empty?
     end
   end
 

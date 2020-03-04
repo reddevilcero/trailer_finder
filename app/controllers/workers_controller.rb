@@ -30,7 +30,7 @@ class WorkersController < ApplicationController
         session[:id] = worker.id
         redirect "/profile/#{worker.id}/edit"
       else
-        flash[:error] = worker.errors.full_messages.first
+        flash[:error] = worker.errors.full_messages
         redirect '/'
       end
     else
@@ -50,13 +50,34 @@ class WorkersController < ApplicationController
   end
 
   get '/profile/:id/edit' do
-    @worker = Helpers.current_user(session)
-    erb :"workers/edit"
+    if Helpers.is_logged_in?(session) && params[:id].to_i == session[:id]
+      @worker = Helpers.current_user(session)
+      erb :"workers/edit"
+    else
+     erb :'errors/403'
+    end
   end
 
   patch '/profile/:id' do
+    if Helpers.is_logged_in?(session) && params[:id].to_i == session[:id]
+      case params[:worker][:rol]
+      when 'driver'
+        @worker = Driver.update(params[:id], params[:worker])
+      when 'admin'
+        @worker = Admin.update(params[:id], params[:worker])
+      else
+        @worker = Worker.update(params[:id], params[:worker])
+      end
+      if @worker.valid?
+        redirect "/profile/#{@worker.id}"
+      else
+        flash[:error] = @worker.errors.full_messages.first
+        redirect '/profile/:id/edit'
+      end
+    else
+     erb :'errors/403'
+    end
 
-    
   end
 
   get '/logout' do
