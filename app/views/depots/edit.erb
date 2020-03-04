@@ -1,1 +1,25 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Update Depot</h1>
+
+<form action="/depots/<%= @depot.slug %>" method="post">
+<input type="hidden" name="_method" id='hidden' value='patch'>
+  <label for="name">Change Depot Branch</label><br>
+  <input type="text" name="depot[name]" id="name" value='<%= @depot.name %>'><br>
+  <label for="location">Change Location Depot</label><br>
+  <input type="text" name='depot[location]' id='location'value='<%= @depot.location %>''><br>
+  <label for="admin">Change Actual Admin for Other: </label><br>
+  <select name="depot[admin_id]" id="admin">
+    <option></option>
+    <% Admin.all.each do |admin| %>
+      <option <%= 'selected' if admin == @depot.admin %> value="<%= admin.id %>"><%= admin.name %></option>
+    <% end %>
+  </select><br>
+  <p>OR Create a New Admin</p>
+  
+  <label for="admin_name">Admin name: </label><br>
+  <input type="text" name="admin[name]" id="admin_name"><br>
+  <label for="admin_email">Admin Email: </label><br>
+  <input type="email" name="admin[email]" id="admin_email">
+  <input type="hidden" name="admin[is_admin?]" value=1>
+  <br><br>
+  <input type="submit" value="Create">
+</form>

@@ -26,11 +26,21 @@ class DepotsController < ApplicationController
   end
 
   get "/depots/:slug/edit" do
+    @depot = Depot.find_by_slug(params[:slug])
+    
     erb :"/depots/edit"
   end
 
   patch "/depots/:slug" do
-    redirect "/depots/:slug"
+    depot = Depot.find_by_slug(params[:slug])
+    if Helpers.params_empty?(params[:admin])
+      depot.update(params[:depot])
+    else
+      depot.update(params[:depot])
+      depot.build_admin(params[:admin])
+    end
+    depot.save
+    redirect "/depots/#{depot.slug}"
   end
 
   delete "/depots/:slug/delete" do
