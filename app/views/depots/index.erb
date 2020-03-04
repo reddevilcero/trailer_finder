@@ -4,9 +4,11 @@
   <div class="depot_wrap">
     <h2><%= depot.name %> <%= depot.location %></h2>
     <p><%= depot.trailers.count %></p>
-    <% if depot.admins %>
-      <% depot.admins.each do |admin| %>
-        <p><%= admin.full_name %></p>
+    <% if depot.workers %>
+      <% depot.workers.each do |worker| %>
+        <% if worker.is_admin? %>
+          <p><%= worker.full_name %></p>
+        <% end %>
       <% end %>
     <% end %>
 

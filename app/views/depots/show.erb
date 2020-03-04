@@ -4,10 +4,11 @@
     <p><%= admin.full_name %></p>
   <% end %>
 <% end %>
+<% if @permission %>
+  <button><a href="/depots/<%= @depot.slug %>/edit">Edit depot</a></button><br><br>
 
-<button><a href="/depots/<%= @depot.slug %>/edit">Edit depot</a></button><br><br>
-
-<form action="/depots/<%= @depot.slug %>/delete" method="post">
-  <input type="hidden" name="_method" id='hidden' value='delete'>
-  <input type="submit" value="Delete">
-</form>
+  <form action="/depots/<%= @depot.slug %>/delete" method="post">
+    <input type="hidden" name="_method" id='hidden' value='delete'>
+    <input type="submit" value="Delete">
+  </form>
+<% end %>

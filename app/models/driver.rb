@@ -3,6 +3,6 @@ class Driver < Worker
   validates :license, presence: true
 
   def self.all_drivers
-    self.all.select{|driver| driver if !driver.license.nil?}
+    self.all.select{|driver| driver if driver.rol == 'driver'}
   end
 end
