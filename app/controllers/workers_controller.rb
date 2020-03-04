@@ -1,7 +1,9 @@
 class WorkersController < ApplicationController
 
   get '/' do
-
+    if Helpers.is_logged_in?(session)
+      redirect "profile/#{session[:id]}"
+    end
     erb :index
   end
 
@@ -21,12 +23,24 @@ class WorkersController < ApplicationController
     end
   end
 
+  post '/signup' do
+
+
+  end
+
   get '/profile/:id' do
     if Helpers.is_logged_in?(session) && params[:id].to_i == session[:id]
-    'working'
+      @worker = Helpers.current_user(session)
+
+      erb :'workers/show'
     else
      erb :'errors/403'
     end
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/'
   end
   
 end
