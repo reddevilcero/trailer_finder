@@ -1,0 +1,5 @@
+<% if @worker.rol.nil? %>
+  <h2>Complet your profile here</h2>
+<% end %>
+
+<form action="/profile/<%= @worker.id %>" method="post"></form>

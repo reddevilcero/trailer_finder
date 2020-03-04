@@ -50,7 +50,13 @@ class WorkersController < ApplicationController
   end
 
   get '/profile/:id/edit' do
-    'working'
+    @worker = Helpers.current_user(session)
+    erb :"workers/edit"
+  end
+
+  patch '/profile/:id' do
+
+    
   end
 
   get '/logout' do
