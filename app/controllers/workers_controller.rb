@@ -24,18 +24,33 @@ class WorkersController < ApplicationController
   end
 
   post '/signup' do
-
+    if !Helpers.params_empty?(params)
+      worker = Worker.new(params)
+      if worker.save
+        session[:id] = worker.id
+        redirect "/profile/#{worker.id}/edit"
+      else
+        flash[:error] = worker.errors.full_messages.first
+        redirect '/'
+      end
+    else
+      flash[:error] = 'Please Fill out all the Fields'
+      redirect '/'
+    end
 
   end
 
   get '/profile/:id' do
     if Helpers.is_logged_in?(session) && params[:id].to_i == session[:id]
       @worker = Helpers.current_user(session)
-
       erb :'workers/show'
     else
      erb :'errors/403'
     end
+  end
+
+  get '/profile/:id/edit' do
+    'working'
   end
 
   get '/logout' do
