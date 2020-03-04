@@ -22,13 +22,22 @@ class DepotsController < ApplicationController
 
   get "/depots/:slug" do
     @depot = Depot.find_by_slug(params[:slug])
-    erb :"/depots/show"
+    if @depot
+      erb :"/depots/show"
+    else
+      erb :'404'
+    end
+    
   end
 
   get "/depots/:slug/edit" do
     @depot = Depot.find_by_slug(params[:slug])
+    if @depot
+      erb :"/depots/edit"
+    else
+      erb :'404'
+    end
     
-    erb :"/depots/edit"
   end
 
   patch "/depots/:slug" do

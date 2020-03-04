@@ -24,12 +24,21 @@ class TrailersController < ApplicationController
 
   get "/trailers/:identifier" do
     @trailer = Trailer.find_by(identifier: params[:identifier])
-    erb :"/trailers/show"
+  
+    if @trailer
+      erb :"/trailers/show"
+    else
+      erb :'404'
+    end
   end
 
   get "/trailers/:identifier/edit" do
     @trailer = Trailer.find_by(identifier: params[:identifier]) 
-    erb :"/trailers/edit"
+    if @trailer
+      erb :"/trailers/edit"
+    else
+      erb :'404'
+    end
   end
 
   patch "/trailers/:identifier" do
