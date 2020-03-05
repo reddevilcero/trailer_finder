@@ -1,6 +1,6 @@
 <h1><%= @depot.normalize %></h1>
-<% if @depot.admins %>
-  <% @depot.admins.each do |admin| %>
+<% if @depot.workers %>
+  <% @depot.workers.each do |admin| %>
     <p><%= admin.full_name %></p>
   <% end %>
 <% end %>

@@ -43,7 +43,13 @@ class WorkersController < ApplicationController
   get '/profile/:id' do
     if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
       @worker = Worker.find_by_id(params[:id])
-      erb :'workers/show'
+      if @worker
+        erb :'workers/show'
+      else
+        status 404
+        erb :'errors/404'
+      end
+      
     else
      erb :'errors/403'
     end
@@ -77,7 +83,7 @@ class WorkersController < ApplicationController
         redirect "/profile/#{@worker.id}"
       else
         flash[:error] = @worker.errors.full_messages.first
-        redirect '/profile/:id/edit'
+        redirect "/profile/#{params[:id]}/edit"
       end
     else
      erb :'errors/403'

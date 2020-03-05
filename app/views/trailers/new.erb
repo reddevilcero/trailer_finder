@@ -4,13 +4,13 @@
   <input type="text" name="trailer[identifier]" id="identifier" required><br>
   
   <label for="trailer_depot"> Select Branch: </label><br>
-  <select name="trailer[depot_id]" id="trailer_depot">
+  <select class='selectize' name="trailer[depot_id]" id="trailer_depot">
     <% Depot.all.each do |depot| %>
       <option value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %></option>
     <% end %>
   </select><br>
   <label for="make">Select Manufacturer: </label><br>
-  <select name="trailer[make]" id="make" required>
+  <select class='selectize' name="trailer[make]" id="make" required>
     <option value=""></option>
     <option value="CARTWRIGHT">CARTWRIGHT</option>
     <option value="KRONE">KRONE</option>

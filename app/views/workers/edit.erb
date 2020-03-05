@@ -32,14 +32,14 @@
 <% if current_user(session).is_admin? %>
   <input type="hidden" name="worker[is_admin?]" value='false' id='is_admin'>
   <label for="rol">Select Roll:</label><br>
-  <select name="worker[rol]" id="rol" required>
+  <select class='selectize-input' name="worker[rol]" id="rol" required>
     <option></option>
     <% Role.all.each do |rol| %>
       <option value="<%= rol %>"><%= rol.upcase %></option>
     <% end %>
   </select><br><br>
   <label for="depot">Select Depot: </label>
-  <select name="worker[depot_id]" id="depot" required>
+  <select class='selectize' name="worker[depot_id]" id="depot" required>
     <option></option>
     <% Depot.all.each do |depot| %>
       <option <%= 'selected' if @worker.depot_id == depot.id %> value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %>  </option> 
@@ -49,11 +49,12 @@
   <br>
 <% end %>
 
-<input type="submit" value="Submit">
+<input  type="submit" value="Submit">
 </form>
 
 <script>
-  // make license required if it is selected driver as role
+
+
 document.getElementById("rol").addEventListener('change', function(){
     document.getElementById("license").required = this.value == 'driver';
 })

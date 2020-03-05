@@ -1,7 +1,7 @@
 class Depot < ActiveRecord::Base
   has_many :trailers
-  has_many :drivers
-  has_many :admins
+  # has_many :drivers
+  # has_many :admins
   has_many :workers
 
   def branch

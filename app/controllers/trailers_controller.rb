@@ -45,7 +45,7 @@ class TrailersController < ApplicationController
         erb :"/trailers/show"
       else
         status 404
-        erb :'404'
+        erb :'errors/404'
       end
     else
       status 403

@@ -5,7 +5,7 @@
   <input type="text" name="trailer[identifier]" id="identifier" value= '<%= @trailer.identifier %>' required><br>
   
   <label for="trailer_depot"> Select Branch: </label><br>
-  <select name="trailer[depot_id]" id="trailer_depot">
+  <select class='selectize' name="trailer[depot_id]" id="trailer_depot">
     <% Depot.all.each do |depot| %>
       <option <%= 'selected' if depot.id == @trailer.depot.id %> value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %></option>
     <% end %>
