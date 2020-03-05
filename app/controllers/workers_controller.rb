@@ -1,14 +1,14 @@
 class WorkersController < ApplicationController
 
   get '/' do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?(session)
       redirect "profile/#{session[:id]}"
     end
     erb :index
   end
 
   post '/login' do
-    if !Helpers.params_empty?(params)
+    if !params_empty?(params)
       worker = Worker.find_by(email:params[:email].downcase).try('authenticate', params[:password])
       if worker
         session[:id] = worker.id
@@ -24,7 +24,7 @@ class WorkersController < ApplicationController
   end
 
   post '/signup' do
-    if !Helpers.params_empty?(params)
+    if !params_empty?(params)
       worker = Worker.new(params)
       if worker.save
         session[:id] = worker.id
@@ -41,8 +41,8 @@ class WorkersController < ApplicationController
   end
 
   get '/profile/:id' do
-    if Helpers.is_logged_in?(session) && params[:id].to_i == session[:id]
-      @worker = Helpers.current_user(session)
+    if is_logged_in?(session) && params[:id].to_i == session[:id]
+      @worker = current_user(session)
       erb :'workers/show'
     else
      erb :'errors/403'
@@ -50,8 +50,8 @@ class WorkersController < ApplicationController
   end
 
   get '/profile/:id/edit' do
-    if Helpers.is_logged_in?(session) && params[:id].to_i == session[:id]
-      @worker = Helpers.current_user(session)
+    if is_logged_in?(session) && params[:id].to_i == session[:id]
+      @worker = current_user(session)
       erb :"workers/edit"
     else
      erb :'errors/403'
@@ -59,7 +59,7 @@ class WorkersController < ApplicationController
   end
 
   patch '/profile/:id' do
-    if Helpers.is_logged_in?(session) && params[:id].to_i == session[:id]
+    if is_logged_in?(session) && params[:id].to_i == session[:id]
       case params[:worker][:rol]
       when 'driver'
         @worker = Driver.update(params[:id], params[:worker])

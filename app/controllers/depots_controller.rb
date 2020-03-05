@@ -1,7 +1,7 @@
 class DepotsController < ApplicationController
   
   get "/depots" do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?(session)
       @depots = Depot.all
       erb :"/depots/index"
     else
@@ -11,7 +11,7 @@ class DepotsController < ApplicationController
   end
 
   get "/depots/new" do
-    if Helpers.is_logged_in?(session) && Helpers.current_user(session).is_admin?
+    if is_logged_in?(session) && current_user(session).is_admin?
       erb :"/depots/new"
     else
       status 403
@@ -21,8 +21,8 @@ class DepotsController < ApplicationController
   end
 
   post "/depots" do
-    if Helpers.is_logged_in?(session) && Helpers.current_user(session).is_admin?
-      if !Helpers.params_empty?(params[:depot])
+    if is_logged_in?(session) && current_user(session).is_admin?
+      if !params_empty?(params[:depot])
        depot = Depot.create(params[:depot])
       else
         flash[:error] = "Please Fill out all the fields"
@@ -37,8 +37,8 @@ class DepotsController < ApplicationController
   end
 
   get "/depots/:slug" do
-    if Helpers.is_logged_in?(session)
-       @permission = Helpers.is_logged_in?(session) && Helpers.current_user(session).is_admin?
+    if is_logged_in?(session)
+       @permission = is_logged_in?(session) && current_user(session).is_admin?
       @depot = Depot.find_by_slug(params[:slug])
       if @depot
        erb :"/depots/show"
@@ -55,7 +55,7 @@ class DepotsController < ApplicationController
   end
 
   get "/depots/:slug/edit" do
-    if Helpers.is_logged_in?(session) && Helpers.current_user(session).is_admin?
+    if is_logged_in?(session) && current_user(session).is_admin?
       @depot = Depot.find_by_slug(params[:slug])
       if @depot
         erb :"/depots/edit"
@@ -71,9 +71,9 @@ class DepotsController < ApplicationController
   end
 
   patch "/depots/:slug" do
-    if Helpers.is_logged_in?(session) && Helpers.current_user(session).is_admin?
+    if is_logged_in?(session) && current_user(session).is_admin?
       depot = Depot.find_by_slug(params[:slug])
-      if !Helpers.params_empty?(params[:depot])
+      if !params_empty?(params[:depot])
         depot.update(params[:depot])
       else
         flash[:error] = "Please Fill out all the fields"
@@ -87,7 +87,7 @@ class DepotsController < ApplicationController
   end
 
   delete "/depots/:slug/delete" do
-    if Helpers.is_logged_in?(session) && Helpers.current_user(session).is_admin?
+    if is_logged_in?(session) && current_user(session).is_admin?
       depot = Depot.find_by_slug(params[:slug])
       depot.destroy
       redirect "/depots"

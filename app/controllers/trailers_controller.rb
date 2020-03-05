@@ -1,63 +1,100 @@
 class TrailersController < ApplicationController
 
   get "/trailers" do
-    erb :"/trailers/index" 
+    if is_logged_in?(session)
+      @trailers = Trailer.all
+      erb :"/trailers/index" 
+    else
+      status 403
+      erb :'errors/403'
+    end
   end
-
+  
 
   get "/trailers/new" do
-    erb :"/trailers/new"
+    if is_logged_in?(session) && current_user(session).is_admin?
+      erb :"/trailers/new"
+    else
+      status 403
+      erb :'errors/403'
+    end
+    
   end
 
  
   post "/trailers" do
-    trailer = Trailer.new(params[:trailer])
-    if trailer.save
-      flash[:success] ='New Trailer Successfully created'
-      redirect "/trailers/#{trailer.identifier}"
+    if is_logged_in?(session) && current_user(session).is_admin?
+      trailer = Trailer.new(params[:trailer])
+      if trailer.save
+        flash[:success] ='New Trailer Successfully created'
+        redirect "/trailers/#{trailer.identifier}"
+      else
+        flash[:error] = trailer.errors.full_messages.first
+        redirect '/trailers/new'
+      end
     else
-      flash[:error] = trailer.errors.full_messages.first
-      redirect '/trailers/new'
+      status 403
+      erb :'errors/403'
     end
-    
   end
 
   get "/trailers/:identifier" do
-    @trailer = Trailer.find_by(identifier: params[:identifier])
-  
-    if @trailer
-      erb :"/trailers/show"
+    if is_logged_in?(session)
+      @trailer = Trailer.find_by(identifier: params[:identifier])
+      if @trailer
+        erb :"/trailers/show"
+      else
+        status 404
+        erb :'404'
+      end
     else
-      erb :'404'
+      status 403
+      erb :'errors/403'
     end
+
   end
 
   get "/trailers/:identifier/edit" do
-    @trailer = Trailer.find_by(identifier: params[:identifier]) 
-    if @trailer
-      erb :"/trailers/edit"
+    if is_logged_in?(session) && current_user(session).is_admin?
+      @trailer = Trailer.find_by(identifier: params[:identifier]) 
+      if @trailer
+        erb :"/trailers/edit"
+      else
+        erb :'404'
+      end
     else
-      erb :'404'
+      status 403
+      erb :'errors/403'
     end
   end
 
   patch "/trailers/:identifier" do
-    trailer = Trailer.find_by(identifier: params[:identifier])
-    # binding.pry
-    if trailer.update(params[:trailer])
-      flash[:success] ='Trailer Successfully Update'
-      redirect "/trailers/#{trailer.identifier}"
+    if is_logged_in?(session) && current_user(session).is_admin?
+      trailer = Trailer.find_by(identifier: params[:identifier])
+      if trailer.update(params[:trailer])
+        flash[:success] ='Trailer Successfully Update'
+        redirect "/trailers/#{trailer.identifier}"
+      else
+        flash[:error] = trailer.errors.full_messages.first
+        redirect "/trailers/#{params[:identifier]}/edit"
+      end
     else
-      flash[:error] = trailer.errors.full_messages.first
-      redirect "/trailers/#{params[:identifier]}/edit"
+      status 403
+      erb :'errors/403'
     end
+
     
   end
 
   delete "/trailers/:identifier/delete" do
-    trailer = Trailer.find_by(identifier: params[:identifier])
-    trailer.destroy
-    flash[:warning] = "The Trailer #{params[:identifier]} has been delete"
-    redirect "/trailers"
+    if is_logged_in?(session) && current_user(session).is_admin?
+      trailer = Trailer.find_by(identifier: params[:identifier])
+      trailer.destroy
+      flash[:warning] = "The Trailer #{params[:identifier]} has been delete"
+      redirect "/trailers"
+    else
+      status 403
+      erb :'errors/403'
+    end
   end
 end
