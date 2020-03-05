@@ -6,8 +6,9 @@
   <title>Trailer Finder</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/18eb25232a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
- 
+  <link rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body>
   <% flash.keys.each do |type| %>
@@ -17,10 +18,28 @@
     </div>
   <% end %>
 <% if is_logged_in?(session) %>
-     <button ><a href='/logout'>Logout</a></button>
+  <nav class="navbar">
+    <ul class="navbar-nav">
+      </li>
+          <li class="nav-item">
+        <a href='/search' class="nav-link">
+        <span class="link-text">Search</span>
+          
+        </a>
+      </li>
+       <li class="nav-item">
+      <a href='/logout' class="nav-link">
+        <i class="fas fa-sign-out-alt fa-5x"></i>
+      <span class="link-text">logout</span>
+      </a>
+    </ul>
+  </nav>
+     
 <% end %>
-  
-  <%= yield %>
+  <main>
+   <%= yield %>
+  </main>
+ 
 </body>
 
 <script>
