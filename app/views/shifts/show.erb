@@ -1,0 +1,9 @@
+<h2>Page show for shift</h2>
+
+<%= @shift.worker.full_name %>
+
+
+<% if @shift.incomplete? %>
+  <h3>The shift is still incomplete</h3>
+  <button><a href="/shifts/<%= @shift.id %>/edit">Finish It!!</a></button>
+<% end %>

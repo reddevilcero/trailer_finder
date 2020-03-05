@@ -1,11 +1,11 @@
-
+<%#  Only display shifts for the actual user %>
 <% if !@shifts.empty? %>
+
   <% @shifts.each do |shift| %>
     <div class="shift_container">
+    <%# binding.pry %>
       <p><%= shift.created_at.strftime('%a %-d %B') %></p>
       <p><%= shift.trailer.identifier %></p>
-      <p><%= shift.start_depot.branch %></p>
-      <p><%= shift.end_depot.branch %></p>
       <p><%= shift.comments %></p>
     </div>
   <% end %>
