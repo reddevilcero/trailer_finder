@@ -1,5 +1,6 @@
 class Worker < ActiveRecord::Base 
   belongs_to :depot
+  has_many :shifts
   has_secure_password
   validates :email, uniqueness: true, presence: true 
   before_validation :normalize_email
