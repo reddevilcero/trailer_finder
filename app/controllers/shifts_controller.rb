@@ -8,7 +8,6 @@ class ShiftsController < ApplicationController
       status 403
       erb :"errors/403"
     end
-
   end
 
   get 'shifts/new' do
