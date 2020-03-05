@@ -5,7 +5,6 @@ class Trailer < ActiveRecord::Base
 
 
   def actual_position
-    drop_at = self.shifts.last.end_depot
-    Depot.find_by_id(drop_at)
+    self.shifts.last.end_depot
   end
 end

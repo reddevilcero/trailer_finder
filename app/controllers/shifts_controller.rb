@@ -1,6 +1,12 @@
 class ShiftsController < ApplicationController
 
   get '/shifts' do
+    if is_logged_in?(session)
+      @shifts = Shift.all.select{|s| s.worker_id == session[:id]}
+    else
+      status 403
+      erb :"errors/403"
+    end
 
   end
 
