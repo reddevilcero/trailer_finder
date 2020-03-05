@@ -41,8 +41,8 @@ class WorkersController < ApplicationController
   end
 
   get '/profile/:id' do
-    if is_logged_in?(session) && params[:id].to_i == session[:id]
-      @worker = current_user(session)
+    if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
+      @worker = Worker.find_by_id(params[:id])
       erb :'workers/show'
     else
      erb :'errors/403'
@@ -50,16 +50,21 @@ class WorkersController < ApplicationController
   end
 
   get '/profile/:id/edit' do
-    if is_logged_in?(session) && params[:id].to_i == session[:id]
-      @worker = current_user(session)
-      erb :"workers/edit"
+    if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
+      @worker = Worker.find_by_id(params[:id])
+      if @worker
+        erb :"workers/edit"
+      else
+        status 404
+        erb :'errors/404'
+      end
     else
      erb :'errors/403'
     end
   end
 
   patch '/profile/:id' do
-    if is_logged_in?(session) && params[:id].to_i == session[:id]
+    if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
       case params[:worker][:rol]
       when 'driver'
         @worker = Driver.update(params[:id], params[:worker])
