@@ -49,7 +49,6 @@ class WorkersController < ApplicationController
         status 404
         erb :'errors/404'
       end
-      
     else
      erb :'errors/403'
     end
