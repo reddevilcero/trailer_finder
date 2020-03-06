@@ -45,6 +45,10 @@
         </nav>
   </aside>
   <div class="login-info">
+    <% if current_user(session).is_admin?  && params[:id].to_i != session[:id] %>
+  <h3>You Are in The Worker page of <span><%= @worker.full_name %></span> </h3>
+<% end %>
+  <h3><%= current_user(session).rol.upcase %></h3>
     <p> You are logged as: <span><%= current_user(session).full_name %></span> </p>
   </div>
      

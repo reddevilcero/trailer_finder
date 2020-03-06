@@ -212,15 +212,16 @@ input:valid + label {
     width: 100%;
     background: var(--bg-prymary);
     height: 3rem;
+     color: var(--contrast-color);
+     display: flex;
+    font-size: 1.5rem;
+    padding-top: 2px;
+    justify-content: space-evenly;
+    padding-left: 6rem;
 }
 
 .login-info p {
-    color: var(--contrast-color);
-    text-align: end;
-    padding-right: 3rem;
-    font-size: 1.5rem;
-    padding-top: 2px;
-    font-style: italic;
+  font-style: italic;
 }
 .login-info span {
   font-weight: 900;
