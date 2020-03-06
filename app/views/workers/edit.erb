@@ -1,70 +1,71 @@
 <div class="main-container">
   <% if @worker.rol.nil? %>
-  <h2>Complet your profile here</h2>
-<% end %>
+    <h2>Complet your profile here</h2>
+  <% end %>
+  <div class="form-container">
+    <form action="/profile/<%= @worker.id %>" method="POST">
+      <input type="hidden" name="_method" value='PATCH' id='hidden'>
+      
+      <div class="float-label">
+        <input type="text" name="worker[first_name]" id="first_name" value=<%= @worker.first_name %>>
+        <label for="first_name">First Name </label>
+      </div>
+      <div class="float-label">
+        <input type="text" name="worker[last_name]" id="last_name" value=<%= @worker.last_name %>>
+        <label for="last_name">Last Name </label>
+      </div>
+      <div class="float-label">
+        <input type="email" name="worker[email]" id="email" value=<%= @worker.email %>>
+         <label for="email">Email </label>
+        </div>
+      <div class="float-label">
+        <input type="text" name="worker[license]" id="license" value='<%= @worker.license %>' required >
+        <label for="license">license </label>
+      </div>
+      <div class="float-label">
+        <input  <%= 'disabled' if @worker.seniority %> type="month" name="worker[seniority]" id="seniority" value= <%= @worker.seniority || Time.now.strftime("%Y-%m") %>>
+        <label class='valid' for="seniority">Seniority </label>
+      </div>
 
-<form action="/profile/<%= @worker.id %>" method="POST">
-<input type="hidden" name="_method" value='PATCH' id='hidden'>
-<label for="first_name">First Name: </label>
-<br>
-<input type="text" name="worker[first_name]" id="first_name" value=<%= @worker.first_name %>>
-<br>
+      <div class="float-label">
+        <select class='selectize-input' name="worker[rol]" id="rol" required>
+          <option></option>
+          <% Role.all.each do |rol| %>
+            <option value="<%= rol %>"><%= rol.upcase %></option>
+          <% end %>
+        </select>
+        <label class='valid' for="rol">Select Roll</label>
+      </div>
 
-<label for="last_name">Last Name: </label>
-<br>
-<input type="text" name="worker[last_name]" id="last_name" value=<%= @worker.last_name %>>
-<br>
+  
+      <% if current_user(session).is_admin? %>
 
-<label for="email">Email: </label>
-<br>
-<input type="email" name="worker[email]" id="email" value=<%= @worker.email %>>
-<br>
+      <input type="hidden" name="worker[is_admin?]" value='false' id='is_admin'>
 
-<label for="license">license: </label>
-<br>
-<input type="text" name="worker[license]" id="license" value=<%= @worker.license %>>
-<br>
-
-<label for="seniority">Seniority: </label>
-<br>
-<input <%= 'disabled' if @worker.seniority %> type="month" name="worker[seniority]" id="seniority" value= <%= @worker.seniority || Time.now.strftime("%Y-%m") %>>
-<br>
-<br>
-<% if current_user(session).is_admin? %>
-  <input type="hidden" name="worker[is_admin?]" value='false' id='is_admin'>
-  <label for="rol">Select Roll:</label><br>
-  <select class='selectize-input' name="worker[rol]" id="rol" required>
-    <option></option>
-    <% Role.all.each do |rol| %>
-      <option value="<%= rol %>"><%= rol.upcase %></option>
-    <% end %>
-  </select><br><br>
-  <label for="depot">Select Depot: </label>
-  <select class='selectize' name="worker[depot_id]" id="depot" required>
-    <option></option>
-    <% Depot.all.each do |depot| %>
+      
+   
+     <label  class='valid' for="depot">Select Depot </label>
+      <select class='selectize' name="worker[depot_id]" id="depot" required>
+      <option></option>
+      <% Depot.all.each do |depot| %>
       <option <%= 'selected' if @worker.depot_id == depot.id %> value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %>  </option> 
-    <% end %>
 
-  </select>
-  <br>
-<% end %>
+      <script>
+      document.getElementById("rol").addEventListener('change', function(){
+        document.getElementById("license").required = this.value == 'driver'; 
+        document.getElementById("is_admin").value = this.value == 'admin';
+      })
+      </script>
+      <% end %>
 
-<input  type="submit" value="Submit">
-</form>
+      </select>
+      <br>
+      <% end %>
 
-<script>
-
-
-document.getElementById("rol").addEventListener('change', function(){
-    document.getElementById("license").required = this.value == 'driver';
-})
-// set is_admin? to true if admin is selected as role
-document.getElementById("rol").addEventListener('change', function(){
-    document.getElementById("is_admin").value = this.value == 'admin';
-})
-</script>
+      <input class='btn submit' type="submit" value="Submit">
+    </form>
 
 
 
+  </div>
 </div>

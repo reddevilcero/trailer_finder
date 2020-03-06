@@ -101,7 +101,7 @@ body::-webkit-scrollbar-thumb {
 .form-container form input {
   width: 80%;
   height: 3rem;
-  border-radius: 2rem;
+  border-radius: 0.4rem;
   margin-bottom: .5rem;
   color: var(--color-secondary);
   font-size: 1.7rem;
@@ -122,6 +122,15 @@ body::-webkit-scrollbar-thumb {
   color: #777;
   left: 8rem;
   bottom: 0.5rem;
+}
+.float-label .selectize-input {
+  margin-top: 3rem;
+  width: 80%;
+}
+.float-label .valid {
+  transform: translate(-1rem, -2.7rem);
+  color: var(--contrast-color);
+
 }
 
 input:focus {
