@@ -1,9 +1,8 @@
 class Shift < ActiveRecord::Base 
   belongs_to :trailer
   belongs_to :worker
-  #better way to do this?
-  # has_one :start_depot, :class_name => 'Depot', :foreign_key => 'id'
-  # has_one :end_depot, :class_name => 'Depot', :foreign_key => 'id'
+  belongs_to :start_depot, :class_name => 'Depot', :foreign_key => 'start_depot'
+  belongs_to :end_depot, :class_name => 'Depot', :foreign_key => 'end_depot'
 
 
   def incomplete?

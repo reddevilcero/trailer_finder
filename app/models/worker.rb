@@ -9,8 +9,7 @@ class Worker < ActiveRecord::Base
   def normalize_email
     self.email = self.email.downcase.strip
   end
-
-
+  
   def full_name
     "#{first_name} #{last_name}"
   end
