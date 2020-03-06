@@ -130,8 +130,27 @@ body::-webkit-scrollbar-thumb {
 .float-label .valid {
   transform: translate(-1rem, -2.7rem);
   color: var(--contrast-color);
-
 }
+
+.float-label .selectize-input {
+    margin-top: 3rem;
+    width: 80%;
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--color-secondary);
+}
+
+.float-label .valid.especial {
+  transform: translate(7rem, -4.2rem);
+  color: var(--contrast-color);
+}
+div.selectize-input.items.has-options.full.has-items{
+  height: 4rem;
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--color-secondary);
+}
+
 
 input:focus {
   border:  3px solid var(--contrast-color);
@@ -159,6 +178,11 @@ input:valid + label {
 .flash.error{
   background-color:#ce0000;
 }
+.selectize-control.selectize.single {
+  width: 100%;
+  margin-left: 10rem;
+}
+
 
 .btn.submit{
     color: var(--contrast-color);

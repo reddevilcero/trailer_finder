@@ -73,16 +73,16 @@ class WorkersController < ApplicationController
     if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
       case params[:worker][:rol]
       when 'driver'
-        @worker = Driver.update(params[:id], params[:worker])
+        worker = Driver.update(params[:id], params[:worker])
       when 'admin'
-        @worker = Admin.update(params[:id], params[:worker])
+        worker = Admin.update(params[:id], params[:worker])
       else
-        @worker = Worker.update(params[:id], params[:worker])
+        worker = Worker.update(params[:id], params[:worker])
       end
-      if @worker.valid?
-        redirect "/profile/#{@worker.id}"
+      if worker.valid?
+        redirect "/profile/#{worker.id}"
       else
-        flash[:error] = @worker.errors.full_messages.first
+        flash[:error] = worker.errors.full_messages.first
         redirect "/profile/#{params[:id]}/edit"
       end
     else

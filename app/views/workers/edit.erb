@@ -5,7 +5,7 @@
   <div class="form-container">
     <form action="/profile/<%= @worker.id %>" method="POST">
       <input type="hidden" name="_method" value='PATCH' id='hidden'>
-      
+      <input type="hidden" name="worker[is_admin?]" value='false' id='is_admin'>
       <div class="float-label">
         <input type="text" name="worker[first_name]" id="first_name" value=<%= @worker.first_name %>>
         <label for="first_name">First Name </label>
@@ -31,41 +31,34 @@
         <select class='selectize-input' name="worker[rol]" id="rol" required>
           <option></option>
           <% Role.all.each do |rol| %>
-            <option value="<%= rol %>"><%= rol.upcase %></option>
+            <option <%= 'selected' if @worker.rol == rol %> value="<%= rol %>"><%= rol.upcase %></option>
           <% end %>
         </select>
         <label class='valid' for="rol">Select Roll</label>
       </div>
-
-  
-      <% if current_user(session).is_admin? %>
-
-      <input type="hidden" name="worker[is_admin?]" value='false' id='is_admin'>
-
-      
+      <div class="float-label">
+        <select class='selectize' name="worker[depot_id]" id="depot">
+          <option></option>
+          <% Depot.all.each do |depot| %>
+            <option <%= 'selected' if @worker.depot == depot %> value="<%= depot.id %>"><%= depot.branch %></option>
+          <% end %>
+        </select>
+        <label class='valid especial' for="depot">Select or type your Depot</label>
+      </div>
    
-     <label  class='valid' for="depot">Select Depot </label>
-      <select class='selectize' name="worker[depot_id]" id="depot" required>
-      <option></option>
-      <% Depot.all.each do |depot| %>
-      <option <%= 'selected' if @worker.depot_id == depot.id %> value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %>  </option> 
 
-      <script>
-      document.getElementById("rol").addEventListener('change', function(){
-        document.getElementById("license").required = this.value == 'driver'; 
-        document.getElementById("is_admin").value = this.value == 'admin';
-      })
-      </script>
-      <% end %>
-
-      </select>
-      <br>
-      <% end %>
 
       <input class='btn submit' type="submit" value="Submit">
     </form>
 
+ 
 
 
+<script>
+document.getElementById("rol").addEventListener('change', function(){
+document.getElementById("license").required = this.value == 'driver'; 
+document.getElementById("is_admin").value = this.value == 'admin';
+})
+</script>
   </div>
 </div>
