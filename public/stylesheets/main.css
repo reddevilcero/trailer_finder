@@ -178,6 +178,13 @@ input:valid + label {
 .flash.error{
   background-color:#ce0000;
 }
+
+.flash.success {
+    background-color: #8bf721;
+    color: var(--color-primary)
+}
+
+
 .selectize-control.selectize.single {
   width: 100%;
   margin-left: 10rem;
