@@ -1,4 +1,6 @@
 <%#  Only display shifts for the actual user %>
+
+<div class="main-container">
 <% if !@shifts.empty? %>
 
   <% @shifts.each do |shift| %>
@@ -12,3 +14,5 @@
 <% else %>
 <h2>You don't have shifts</h2>
 <% end %>
+
+</div>

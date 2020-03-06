@@ -18,22 +18,35 @@
     </div>
   <% end %>
 <% if is_logged_in?(session) %>
-  <nav class="navbar">
-    <ul class="navbar-nav">
-      </li>
-          <li class="nav-item">
-        <a href='/search' class="nav-link">
-        <span class="link-text">Search</span>
-          
-        </a>
-      </li>
-       <li class="nav-item">
-      <a href='/logout' class="nav-link">
-        <i class="fas fa-sign-out-alt fa-5x"></i>
-      <span class="link-text">logout</span>
-      </a>
-    </ul>
-  </nav>
+  <aside>
+<nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="/">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            HOME
+                        </span>
+                    </a>
+                  
+                </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="/logout">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+  </aside>
+  <div class="login-info">
+    <p> You are logged as: <span><%= current_user(session).full_name %></span> </p>
+  </div>
      
 <% end %>
   <main>

@@ -1,4 +1,5 @@
-<% if @worker.rol.nil? %>
+<div class="main-container">
+  <% if @worker.rol.nil? %>
   <h2>Complet your profile here</h2>
 <% end %>
 
@@ -63,3 +64,7 @@ document.getElementById("rol").addEventListener('change', function(){
     document.getElementById("is_admin").value = this.value == 'admin';
 })
 </script>
+
+
+
+</div>

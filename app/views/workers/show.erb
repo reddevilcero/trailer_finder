@@ -1,3 +1,6 @@
+
+
+<div class="main-container">
 <% if current_user(session).is_admin?  && params[:id].to_i != session[:id] %>
   <h1>You Are in The Worker page of <span><%= @worker.full_name %></span> </h1>
 <% else %>
@@ -8,3 +11,4 @@
 
 
 <button><a href="/profile/<%= @worker.id %>/edit">Edit</a></button>
+</div>
