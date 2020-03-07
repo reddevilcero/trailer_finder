@@ -11,7 +11,9 @@
      <% end %>
      <h4>MOT until  <%= @trailer.mot_date %></h4>
     </div>
+      
     <div class="shifts info">
+      <% if !@trailer.shifts.empty? %>
        <h3>Total Shifts Done <%= @trailer.shifts.count %> </h3>
        <h3>Last Shift</h3>
        <div>
@@ -22,15 +24,23 @@
           <% end %>
        </div>
        <div><%= @trailer.shifts.last.worker.full_name %></div>
+       <% else %>
+        <h2>Brand New Trailer not used Yet</h2>
+       <% end %>
     </div>
     <div class="depot info">
+      <h2>Depot Base</h2>
         <h3><i class="fas fa-industry"></i></h3>
        <div><%= @trailer.depot.branch %></div>
     </div>
-    <div class="location info">
-        <h3>Actual Trailer location</h3>
-        <i class="fas fa-map-marker-alt"></i>
+      <div class="location info">
+      <h3>Actual Trailer location</h3>
+      <i class="fas fa-map-marker-alt"></i>
+      <% if false %>
        <div><%= @trailer.shifts.last.end_depot.branch %></div>
+      <% else %>
+        <div><%= @trailer.depot.branch %></div>
+      <% end %>
     </div>
   </div>
   <div class="edit-delete">
