@@ -1,28 +1,40 @@
 
 <div class="main-container">
-
-<form action="/trailers/<%= @trailer.identifier %>" method="post">
-<input type="hidden" name="_method" value="patch" id="hidden"> 
-
-  <label for="identifier">Trailer Identifier: </label><br>
-  <input type="text" name="trailer[identifier]" id="identifier" value= '<%= @trailer.identifier %>' required><br>
-  
-  <label for="trailer_depot"> Select Branch: </label><br>
-  <select class='selectize' name="trailer[depot_id]" id="trailer_depot">
-    <% Depot.all.each do |depot| %>
-      <option <%= 'selected' if depot.id == @trailer.depot.id %> value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %></option>
-    <% end %>
-  </select><br>
-  <label for="mot_date">Next MOT due: </label><br>
-  <input type="date" name="trailer[mot_date]" id="mot_date" value='<%= @trailer.mot_date %>' required><br>
-  <p>Is VOR?</p>
-  <label for="vor">Yes</label>
-  <input type="radio" name="trailer[vor]" id="Yes" <%= 'checked' if @trailer.vor %> value= 1>
-  <label for="no">No</label>
-  <input type="radio" name="trailer[vor]" id="No" <%= 'checked' if  @trailer.vor == false  %> value= 0>
-
-  <input type="submit" value="Edit Trailer">
-
-</form>
-
+  <div class="form-container">
+    <form action="/trailers/<%= @trailer.identifier %>" method="post">
+    <input type="hidden" name="_method" id='hidden' value='PATCH'>
+      <div class="float-label">
+        <input value='<%= @trailer.identifier %>' type="text" name="trailer[identifier]" id="identifier" required>
+        <label for="identifier">Trailer Identifier: </label>
+      </div>
+      <div class="float-label">
+        <select class='selectize' name="trailer[depot_id]" id="trailer_depot">
+          <% Depot.all.each do |depot| %>
+            <option <%= @trailer.depot == depot %> value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %></option>
+          <% end %>
+        </select>
+        <label class='valid especial' for="trailer_depot"> Select Branch: </label>
+      </div>
+      <div class="float-label">
+        <select disabled class='selectize' name="trailer[make]" id="make" required>
+          <option value="<%= @trailer.make %>"><%= @trailer.make %></option>
+    
+        </select>
+        <label class='valid especial' for="make">Select Manufacturer: </label>
+      </div>
+      <div class="float-label">
+        <input value='<%= @trailer.mot_date %>' type="date" name="trailer[mot_date]" id="mot_date" required>
+        <label class='valid'  for="mot_date">Next MOT due: </label>
+      </div>
+      <div class="float-label">
+        <p class="radio">Is VOR?</p>
+        <input class='radio' type="radio" name="trailer[vor]" id="yes" value="true" checked />
+        <label class='radio' for="yes">YES</label>
+    
+        <input <%= 'checked' if @trailer.vor == false %> class='radio' type="radio" name="trailer[vor]" id="no" value="false" />
+        <label class='radio' for="no">NO</label>
+      </div>
+      <input class='btn submit' type="submit" value="Submit">
+    </form>
+  </div>
 </div>
