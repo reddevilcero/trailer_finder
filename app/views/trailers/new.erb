@@ -1,31 +1,45 @@
-<form action="/trailers" method="post">
 
-  <label for="identifier">Trailer Identifier: </label><br>
-  <input type="text" name="trailer[identifier]" id="identifier" required><br>
-  
-  <label for="trailer_depot"> Select Branch: </label><br>
-  <select name="trailer[depot_id]" id="trailer_depot">
-    <% Depot.all.each do |depot| %>
-      <option value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %></option>
-    <% end %>
-  </select><br>
-  <label for="make">Select Manufacturer: </label><br>
-  <select name="trailer[make]" id="make" required>
-    <option value=""></option>
-    <option value="CARTWRIGHT">CARTWRIGHT</option>
-    <option value="KRONE">KRONE</option>
-    <option value="MONTRACON">MONTRACON</option>
-    <option value="SCHMITZ">SCHMITZ</option>
-    <option value="FRUEHAUF">FRUEHAUF</option>
-  </select><br>
-  <label for="mot_date">Next MOT due: </label><br>
-  <input type="date" name="trailer[mot_date]" id="mot_date" required><br>
-  <p>Is VOR?</p>
-  <label for="vor">Yes</label>
-  <input type="radio" name="trailer[vor]" id="Yes" value= 1>
-  <label for="no">No</label>
-  <input type="radio" name="trailer[vor]" id="No" checked value= 0>
-
-  <input type="submit" value="Create New Trailer">
-
-</form>
+<div class="main-container">
+  <h2 class="form-header">Create New Trailer</h2>
+  <div class="form-container">
+    <form action="/trailers" method="post">
+      <div class="float-label">
+        <input type="text" name="trailer[identifier]" id="identifier" required>
+        <label for="identifier">Trailer Identifier: </label>
+      </div>
+      <div class="float-label">
+        <select class='selectize' name="trailer[depot_id]" id="trailer_depot">
+          <% Depot.all.each do |depot| %>
+            <option ></option>
+            <option value="<%= depot.id %>"><%= depot.branch %></option>
+          <% end %>
+        </select>
+        <label class='valid especial' for="trailer_depot"> Select Branch: </label>
+      </div>
+      <div class="float-label">
+        <select class='selectize' name="trailer[make]" id="make" required>
+          <option value=""></option>
+          <option value="CARTWRIGHT">CARTWRIGHT</option>
+          <option value="KRONE">KRONE</option>
+          <option value="MONTRACON">MONTRACON</option>
+          <option value="SCHMITZ">SCHMITZ</option>
+          <option value="FRUEHAUF">FRUEHAUF</option>
+        </select>
+        <label class='valid especial' for="make">Select Manufacturer: </label>
+      </div>
+      <div class="float-label">
+        <input type="date" name="trailer[mot_date]" id="mot_date" required>
+        <label class='valid'  for="mot_date">Next MOT due: </label>
+      </div>
+      <div class="float-label">
+        <p class="radio">Is VOR?</p>
+        <input class='radio' type="radio" name="trailer[vor]" id="yes" value="true" checked />
+        <label class='radio' for="yes">YES</label>
+    
+        <input  class='radio' type="radio" name="trailer[vor]" id="no" value="false" />
+        <label class='radio' for="no">NO</label>
+      </div>
+      <input class='btn submit' type="submit" value="Submit">
+    </form>
+  </div>
+</div>

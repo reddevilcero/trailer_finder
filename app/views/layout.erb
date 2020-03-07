@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trailer Finder</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/18eb25232a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body>
   <% flash.keys.each do |type| %>
@@ -12,6 +17,54 @@
       <a href="#" class="close">&times;</a>
     </div>
   <% end %>
-  <%= yield %>
+<% if is_logged_in?(session) %>
+  <aside>
+<nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="/">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            HOME
+                        </span>
+                    </a>
+                  
+                </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="/logout">
+                         <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+  </aside>
+  <div class="login-info">
+    <% if @worker &&  current_user(session).is_admin?  && params[:id].to_i != session[:id] %>
+  <h3>You Are in The Worker page of <span><%= @worker.full_name %></span> </h3>
+<% end %>
+  <h3><%= current_user(session).rol.upcase if current_user(session).rol %></h3>
+    <p> You are logged as: <span><%= current_user(session).full_name %></span> </p>
+  </div>
+     
+<% end %>
+  <main>
+   <%= yield %>
+  </main>
+ 
 </body>
+
+<script>
+ $(document).ready(function () {
+      $('.selectize').selectize({
+          sortField: 'text',
+      });
+  });
+  
+</script>
 </html>

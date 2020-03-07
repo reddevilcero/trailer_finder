@@ -1,0 +1,49 @@
+
+<div class="main-container">
+    <h2 class='form-header'><%= @shift.end_depot ? 'Edit' : 'Finish' %> Shift</h2>
+  <div class="form-container">
+    <form action="/shifts/<%= @shift.id %>" method="post">
+      <input type="hidden" name="_method" value='PATCH' id='hidden'>
+      <input type="hidden" name="shift[worker_id]" value="<%= session[:id] %>">
+      <div class="float-label">
+        <select disabled class='selectize' name="shift[trailer_id]" id="trailer_id" required>
+          <option></option>
+          <% Trailer.all.each do |trailer| %>
+            <option <%= 'selected' if @shift.trailer == trailer %>  value="<%= trailer.id %>"><%= trailer.identifier %></option>
+          <% end %>
+        </select>
+        <label class='valid especial' for="trailer_id">Select Your Trailer</label>
+      </div>
+      <div class="float-label">
+        <select disabled class='selectize' name="start_depot" id="start_depot" required>
+          <option></option>
+          <% Depot.all.each do |depot| %>
+            <option <%= 'selected' if @shift.start_depot == depot %> value="<%= depot.id %>"><%= depot.branch %></option>
+          <% end %>
+        </select>
+        <label class='valid especial' for="start_depot">Select Start Depot</label>
+      </div>
+      <div class="float-label">
+        <select <%= 'disabled' if @shift.end_depot %> class='selectize' name="end_depot" id="end_depot">
+          <option></option>
+          <% Depot.all.each do |depot| %>
+            <option <%= 'selected' if @shift.end_depot == depot %> value="<%= depot.id %>"><%= depot.branch %></option>
+          <% end %>
+        </select>
+        <label class='valid especial' for="end_depot">Select Finish Depot</label>
+      </div>      
+      
+      <div class="float-label">
+        <textarea name="shift[comments]" id="comments" maxlength="250" placeholder="type max 250 characters"><%= @shift.comments %></textarea>
+        <label class='valid especial' for="comments">Anything To Report: </label>
+      </div>
+    
+      
+
+      <input class='btn submit' type="submit" value="<%= @shift.end_depot ? 'Edit' : 'Finish' %> Shift">
+
+
+    </form>
+
+  </div>
+</div>

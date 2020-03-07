@@ -1,5 +1,5 @@
-class Admin < ActiveRecord::Base 
-  validates :email, uniqueness: true
-  has_one :depot
-  has_many :trailers, through: :depot
+require_relative './worker'
+require_relative './validators/admin_validator'
+class Admin < Worker
+  validates_with AdminValidator
 end

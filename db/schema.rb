@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_205703) do
-
-  create_table "admins", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.boolean "is_admin?"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "depot_id"
-  end
+ActiveRecord::Schema.define(version: 2020_03_05_115451) do
 
   create_table "depots", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.integer "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shifts", force: :cascade do |t|
+    t.string "comments"
+    t.integer "worker_id"
+    t.integer "start_depot"
+    t.integer "end_depot"
+    t.integer "trailer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,6 +37,21 @@ ActiveRecord::Schema.define(version: 2020_03_03_205703) do
     t.integer "depot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "workers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "is_admin?", default: false
+    t.string "rol"
+    t.string "seniority"
+    t.string "license"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "depot_id"
+    t.index ["email"], name: "index_workers_on_email", unique: true
   end
 
 end

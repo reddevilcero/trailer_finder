@@ -1,6 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+  helpers Sinatra::Helpers
 
   configure do
     set :public_folder, 'public'
@@ -10,8 +11,5 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
   end
 
-  get '/' do
-    erb :index
-  end
 
 end

@@ -1,6 +1,19 @@
-<h1>This is the show page for an individual instance of your model.</h1>
 
+<div class="main-container">
 <h1><%= @depot.normalize %></h1>
-<% if @depot.admin %>
-  <p><%= @depot.admin.name %></p>
+<% if @depot.workers %>
+  <% @depot.workers.each do |admin| %>
+    <p><%= admin.full_name %></p>
+  <% end %>
 <% end %>
+<% if @permission %>
+  <button><a href="/depots/<%= @depot.slug %>/edit">Edit depot</a></button><br><br>
+
+  <form action="/depots/<%= @depot.slug %>/delete" method="post">
+    <input type="hidden" name="_method" id='hidden' value='delete'>
+    <input type="submit" value="Delete">
+  </form>
+<% end %>
+
+
+</div>

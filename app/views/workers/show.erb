@@ -1,0 +1,12 @@
+
+
+<div class="main-container">
+<% if current_user(session).id == params[:id].to_i %>
+  <h1>Hello <%= @worker.full_name %></h1>
+<% end %>
+
+
+
+
+<button><a href="/profile/<%= @worker.id %>/edit">Edit</a></button>
+</div>

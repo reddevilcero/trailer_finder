@@ -1,10 +1,14 @@
 class Depot < ActiveRecord::Base
   has_many :trailers
-  has_one :admin
+  has_many :drivers
+  has_many :admins
+  has_many :workers
 
-
+  def branch
+    "#{self.name} #{self.location}"
+  end
   def slug
-    "#{self.name} #{self.location}".downcase.gsub(' ','-')
+    self.branch.downcase.gsub(' ','-')
   end
 
   def self.find_by_slug(slug)
