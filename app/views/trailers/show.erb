@@ -1,12 +1,48 @@
 <div class="main-container">
-  <%= @trailer.identifier %>
+  <div class="inner-container">
+  <div class='trailer-info'>
+    <div class="technic info">
+     <h3>identifier: <%= @trailer.identifier %></h3>
+     <h3>make: <%= @trailer.make %></h3>
+     <% if @trailer.vor %>
+     <h3>VOR Trailer <i class="fas fa-lock"></i> </h3>
+     <% else %>
+     <h3>OK <i class="fas fa-clipboard-check"></i></h3>
+     <% end %>
+     <h4>MOT until  <%= @trailer.mot_date %></h4>
+    </div>
+    <div class="shifts info">
+       <h3>Total Shifts Done <%= @trailer.shifts.count %> </h3>
+       <h3>Last Shift</h3>
+       <div>
+          <% if !@trailer.shifts.last.comments.empty?  %>
+            <h3>Something reported check it <span><a href="/shifts/<%= @trailer.shifts.last.id %>">here</a></span></h3>
+          <% else %>
+            <h3>Nothing reported</h3>
+          <% end %>
+       </div>
+       <div><%= @trailer.shifts.last.worker.full_name %></div>
+    </div>
+    <div class="depot info">
+        <h3><i class="fas fa-industry"></i></h3>
+       <div><%= @trailer.depot.branch %></div>
+    </div>
+    <div class="location info">
+        <h3>Actual Trailer location</h3>
+        <i class="fas fa-map-marker-alt"></i>
+       <div><%= @trailer.shifts.last.end_depot.branch %></div>
+    </div>
+  </div>
+  <div class="edit-delete">
+    <% if current_user(session).is_admin? %>
+      <a class='btn submit edit' href="/trailers/<%= @trailer.identifier %>/edit">EDIT</a>
+      <form action="/trailers/<%= @trailer.identifier %>/delete" method="post">
+        <input type="hidden" name="_method" id='hidden' value='delete'>
+        <input class='btn submit edit delete' type="submit" value="DELETE">
+      </form>
+    <% end %>
+  </div>
+  
 
-  <% if current_user(session).is_admin? %>
-  <button><a href="/trailers/<%= @trailer.identifier %>/edit">Edit Trailer</a></button>
-
-  <form action="/trailers/<%= @trailer.identifier %>/delete" method="post">
-    <input type="hidden" name="_method" id='hidden' value='delete'>
-    <input type="submit" value="Delete">
-  </form>
-  <% end %>
+  </div>
 </div>

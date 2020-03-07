@@ -20,7 +20,7 @@ html {
 
 body {
   font-family: "lato";
-  font-weight: 400;
+  font-weight: 900;
   line-height: 1.7;
   color: var(--primary-color)
 }
@@ -349,9 +349,12 @@ background-color:var(--color-secondary);
 /* ################################ */
 
 /*############# Flash messages ############# */
-
+#close{
+  text-decoration: none;
+}
 
 .flash {
+    position: absolute;
     font-size: 3.5rem;
     text-align: center;
     color: var(--contrast-color);
@@ -381,10 +384,10 @@ background-color:var(--color-secondary);
   height: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: 5rem 1fr 1fr 1fr 1fr 5rem;
 }
 div.header {
-  grid-column: 1/-1;
+  grid-column: 2/5;
 }
 
 div.search-bar {
@@ -419,4 +422,69 @@ div.header h2 {
   padding-top: 0.5rem;
   font-size: 2.1rem;
   font-weight: 900;
+}
+
+
+div.trailer-info {
+  grid-column: 2/5;
+  grid-row: 2/-2;
+  display: grid;
+  grid-template: repeat(4, 1fr)/repeat(4,1fr);
+  gap: 2.5rem;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 300%;
+    color: var(--contrast-color);
+    text-align: center;
+    background-color: var(--bg-prymary);
+    border-radius: 1rem;
+    box-shadow: 2px 3px 14px 3px rgba(0,0,0,0.71), 8px 3px 14px 3px rgba(0,0,0,0.67);
+}
+
+div.technic.info{
+  grid-column: 1/3;
+  grid-row: 1/3;
+}
+div.shifts.info{
+  grid-column: 3/-1;
+  grid-row: 1/3;
+}
+div.depot.info{
+  grid-column: 1/3;
+  grid-row: 3/5;
+}
+div.location.info{
+  grid-column: 3/-1;
+  grid-row: 3/5;
+}
+
+
+
+
+
+div.edit-delete{
+  grid-column: 1/-1;
+  grid-row: 6/7;
+  background-color: var(--bg-secondary);
+  display: flex;
+  padding: .5rem;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 1rem;
+}
+.btn.submit.edit {
+    color: var(--bg-primary);
+    background-color: rgb(224, 105, 7);
+    max-width: 15rem;
+    padding: .7rem;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-decoration: none;
+    border-radius: 5rem;
+}
+.btn.submit.edit.delete{
+  background-color: rgb(165, 22, 22);
 }

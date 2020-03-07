@@ -14,7 +14,7 @@
   <% flash.keys.each do |type| %>
     <div data-alert class="flash <%= type %> alert-box radius">
       <%= flash[type] %>
-      <a href="#" class="close">&times;</a>
+      <a id="close">&times;</a>
     </div>
   <% end %>
 <% if is_logged_in?(session) %>
@@ -65,6 +65,10 @@
           sortField: 'text',
       });
   });
+
+  document.getElementById("close").addEventListener('click', function(){
+    document.querySelector('.flash').style.display = 'none'
+    })
   
 </script>
 </html>
