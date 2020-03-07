@@ -1,5 +1,6 @@
 
 <div class="main-container">
+    <h2 class='form-header'><%= @shift.end_depot ? 'Edit' : 'Finish' %> Shift</h2>
   <div class="form-container">
     <form action="/shifts/<%= @shift.id %>" method="post">
       <input type="hidden" name="_method" value='PATCH' id='hidden'>
@@ -26,7 +27,7 @@
         <select <%= 'disabled' if @shift.end_depot %> class='selectize' name="end_depot" id="end_depot">
           <option></option>
           <% Depot.all.each do |depot| %>
-            <option <%= 'selected' if @shift.start_depot == depot %> value="<%= depot.id %>"><%= depot.branch %></option>
+            <option <%= 'selected' if @shift.end_depot == depot %> value="<%= depot.id %>"><%= depot.branch %></option>
           <% end %>
         </select>
         <label class='valid especial' for="end_depot">Select Finish Depot</label>

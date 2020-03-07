@@ -1,6 +1,8 @@
 <div class="main-container">
   <% if @worker.rol.nil? %>
-    <h2>Complet your profile here</h2>
+    <h2 class='form-header' >Complet your profile</h2>
+    <% else %>
+     <h2 class='form-header' >Edit your profile</h2>
   <% end %>
   <div class="form-container">
     <form action="/profile/<%= @worker.id %>" method="POST">

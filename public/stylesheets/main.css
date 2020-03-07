@@ -124,6 +124,16 @@ p.radio {
     color: var(--contrast-color);
     font-weight: 900;
 }
+h2.form-header{
+    position: absolute;
+    font-weight: 900;
+    left: 50%;
+    top: 17%;
+    font-size: 5rem;
+    z-index: 1;
+    transform: translate(-45%, -15%);
+    color: var(--contrast-color);
+}
 
 input[type="radio"].radio{
   height: 0;

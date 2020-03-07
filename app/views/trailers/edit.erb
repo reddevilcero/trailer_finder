@@ -1,5 +1,6 @@
 
 <div class="main-container">
+  <h2 class="form-header">Edit Trailer</h2>
   <div class="form-container">
     <form action="/trailers/<%= @trailer.identifier %>" method="post">
     <input type="hidden" name="_method" id='hidden' value='PATCH'>
@@ -34,7 +35,7 @@
         <input <%= 'checked' if @trailer.vor == false %> class='radio' type="radio" name="trailer[vor]" id="no" value="false" />
         <label class='radio' for="no">NO</label>
       </div>
-      <input class='btn submit' type="submit" value="Submit">
+      <input class='btn submit' type="submit" value="Edit Trailer">
     </form>
   </div>
 </div>

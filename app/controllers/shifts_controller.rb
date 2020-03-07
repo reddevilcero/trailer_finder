@@ -45,7 +45,6 @@ class ShiftsController < ApplicationController
       shift = Shift.new(params[:shift])
       shift.start_depot= Depot.find_by(id:params[:start_depot])
       shift.end_depot = Depot.find_by(id:params[:end_depot])
-      binding.pry
       shift.save
       redirect "/shifts/#{shift.id}"
     else
