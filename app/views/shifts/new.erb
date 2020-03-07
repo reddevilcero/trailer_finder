@@ -14,7 +14,7 @@
         <label class='valid especial' for="trailer_id">Select Your Trailer</label>
       </div>
       <div class="float-label">
-        <select class='selectize' name="shift[start_depot]" id="start_depot" required>
+        <select class='selectize' name="start_depot" id="start_depot" required>
           <option></option>
           <% Depot.all.each do |depot| %>
             <option value="<%= depot.id %>"><%= depot.branch %></option>
@@ -23,7 +23,7 @@
         <label class='valid especial' for="start_depot">Select Start Depot</label>
       </div>
       <div class="float-label">
-        <select class='selectize' name="shift[end_depot]" id="end_depot">
+        <select class='selectize' name="end_depot" id="end_depot">
           <option></option>
           <% Depot.all.each do |depot| %>
             <option value="<%= depot.id %>"><%= depot.branch %></option>

@@ -42,10 +42,11 @@ class ShiftsController < ApplicationController
   post '/shifts' do
     #Better Way to do this?
     if is_logged_in?(session) && current_user(session).rol == 'driver'
-      shift = Shift.create(params[:shift])
-      # shift.start_depot= Depot.find_by(id:params[:start_depot])
-      # shift.end_depot = Depot.find_by(id:params[:end_depot])
-      # shift.save
+      shift = Shift.new(params[:shift])
+      shift.start_depot= Depot.find_by(id:params[:start_depot])
+      shift.end_depot = Depot.find_by(id:params[:end_depot])
+      binding.pry
+      shift.save
       redirect "/shifts/#{shift.id}"
     else
       status 403
@@ -59,6 +60,10 @@ class ShiftsController < ApplicationController
     if is_logged_in?(session) && current_user(session).rol == 'driver'
       shift = Shift.find_by_id(params[:id])
       shift.update(params[:shift])
+      if shift.incomplete?
+        shift.end_depot = Depot.find_by(id:params[:end_depot])
+        shift.save
+      end
       redirect "/shifts/#{shift.id}"
     else
       status 404
