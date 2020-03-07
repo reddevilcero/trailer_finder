@@ -1,12 +1,20 @@
 <div class="main-container">
-<h1>Create a New Depot</h1>
+<h2>Create a New Depot</h2>
 
-<form action="/depots" method="post">
-  <label for="name">Depot Branch</label><br>
-  <input type="text" name="depot[name]" id="name" required ><br>
-  <label for="location">New Location Depot</label><br>
-  <input type="text" name='depot[location]' id='location' required><br>
-  <input type="submit" value="Create">
-</form>
+  <div class="form-container">
+    <form action="/depots" method="post">
+    <div class="float-label">
+    <input type="text" name="depot[name]" id="name" required >
+    <label for="name">Depot Branch</label>
+    </div>
+    <div class="float-label">
+    <input type="text" name='depot[location]' id='location' required>
+    <label for="location">New Location Depot</label>
+    </div>
+    <input class='btn submit' type="submit" value="Create">
+    </form>
+  </div>
+
+  
 
 </div>

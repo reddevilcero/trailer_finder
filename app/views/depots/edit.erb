@@ -1,14 +1,18 @@
 <div class="main-container">
-<h1>Update Depot</h1>
-
-<form action="/depots/<%= @depot.slug %>" method="post">
-<input type="hidden" name="_method" id='hidden' value='patch'>
-  <label for="name">Change Depot Branch</label><br>
-  <input type="text" name="depot[name]" id="name" value='<%= @depot.name %>' required><br>
-  <label for="location">Change Location Depot</label><br>
-  <input type="text" name='depot[location]' id='location' value='<%= @depot.location %>' required><br>
-  <br>
-  <input type="submit" value="edit">
-</form>
+  <h2>Update Depot</h2>
+  <div class="form-container">
+    <form action="/depots/<%= @depot.slug %>" method="post">
+      <input type="hidden" name="_method" id='hidden' value='patch'>
+    <div class="float-label">
+    <input type="text" name="depot[name]" id="name" value='<%= @depot.name %>' required >
+    <label for="name">Depot Branch</label>
+    </div>
+    <div class="float-label">
+    <input value='<%= @depot.location %>' type="text" name='depot[location]' id='location' required>
+    <label for="location">New Location Depot</label>
+    </div>
+    <input class='btn submit' type="submit" value="Create">
+    </form>
+  </div>
 
 </div>
