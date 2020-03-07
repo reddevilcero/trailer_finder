@@ -1,11 +1,12 @@
 <div class="main-container">
-<%= @trailer.identifier %>
+  <%= @trailer.identifier %>
 
-<% if current_user(session).is_admin? %>
-<button><a href="/trailers/<%= @trailer.identifier %>/edit">Edit Trailer</a></button>
+  <% if current_user(session).is_admin? %>
+  <button><a href="/trailers/<%= @trailer.identifier %>/edit">Edit Trailer</a></button>
 
-<form action="/trailers/<%= @trailer.identifier %>/delete" method="post">
-  <input type="hidden" name="_method" id='hidden' value='delete'>
-  <input type="submit" value="Delete">
-</form>
-<% end %>
+  <form action="/trailers/<%= @trailer.identifier %>/delete" method="post">
+    <input type="hidden" name="_method" id='hidden' value='delete'>
+    <input type="submit" value="Delete">
+  </form>
+  <% end %>
+</div>

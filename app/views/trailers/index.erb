@@ -1,14 +1,30 @@
 
 <div class="main-container">
-<h1>This is the Model's index page.</h1>
+  <div class="inner-container">
+    <div class="header">
 
-<% Trailer.all.each do |trailer| %>
-  <div class="trailer_wrap">
-    <h5><%= trailer.identifier %></h5>
+    </div>
+    <div class="search-bar">
+
+      <div class="float-label">
+        <select class='selectize' name="shift[trailer_id]" id="trailer_link" required>
+          <option></option>
+          <% Trailer.all.each do |trailer| %>
+            <option value="<%= trailer.identifier %>"><%= trailer.identifier %></option>
+          <% end %>
+        </select>
+      </div>
+      <a id='dinamic_link' class='btn submit link' href="">Find</a>
     
-    <button><a href="/trailers/<%= trailer.identifier %>">Show details</a></button>
-  </div>
+    </div>
   
-<% end %>
+  </div>
 
 </div>
+
+<script>
+document.getElementById("dinamic_link").addEventListener('click', function(){
+ let foo = document.getElementById('trailer_link').value
+ this.href += '/'+foo
+})
+</script>

@@ -10,7 +10,8 @@
       <div class="float-label">
         <select class='selectize' name="trailer[depot_id]" id="trailer_depot">
           <% Depot.all.each do |depot| %>
-            <option value="<%= depot.id %>"><%= depot.name %> - <%= depot.location %></option>
+            <option ></option>
+            <option value="<%= depot.id %>"><%= depot.branch %></option>
           <% end %>
         </select>
         <label class='valid especial' for="trailer_depot"> Select Branch: </label>

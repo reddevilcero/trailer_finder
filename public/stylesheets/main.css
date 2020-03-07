@@ -372,3 +372,37 @@ background-color:var(--color-secondary);
 
 
 /* ######################## */
+
+/*############# Show Pages ############# */
+
+
+.inner-container {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+div.header {
+  background-color: aqua;
+  grid-column: 1/-1;
+
+}
+
+div.search-bar {
+ background-color: aliceblue;
+  grid-column: 2/5;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn.submit.link {
+  margin-top: .6rem;
+  border-radius: .4rem;
+  font-weight: 900;
+  font-size: 2rem;
+  text-decoration: none;
+}
