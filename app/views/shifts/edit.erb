@@ -1,28 +1,29 @@
 
 <div class="main-container">
-<form action="/shifts/<%= @shift.id %>" method="POST">
-<input type="hidden" name="_method" id='hidden' value='PATCH'>
-<label  for="trailer_id">Select Your Trailer</label>
+  <div class="form-container">
+  <form action="/shifts/<%= @shift.id %>" method="POST">
+  <input type="hidden" name="_method" id='hidden' value='PATCH'>
+  <label  for="trailer_id">Select Your Trailer</label>
   <select disabled  class='selectize' name="shift[trailer_id]" id="trailer_id" required>
-    <option></option>
-    <% Trailer.all.each do |trailer| %>
-      <option <%= 'selected' if @shift.trailer == trailer %> value="<%= trailer.id %>"><%= trailer.identifier %></option>
-    <% end %>
+  <option></option>
+  <% Trailer.all.each do |trailer| %>
+  <option <%= 'selected' if @shift.trailer == trailer %> value="<%= trailer.id %>"><%= trailer.identifier %></option>
+  <% end %>
   </select>
 
   <label for="start_depot">Start Depot: </label>
   <select disabled class='selectize' name="shift[start_depot]" id="start_depot" required>
-    <option></option>
-    <% Depot.all.each do |depot| %>
-      <option <%= 'selected' if @shift.start_depot == depot.id %> value="<%= depot.id %>"><%= depot.branch %></option>
-    <% end %>
+  <option></option>
+  <% Depot.all.each do |depot| %>
+  <option <%= 'selected' if @shift.start_depot == depot.id %> value="<%= depot.id %>"><%= depot.branch %></option>
+  <% end %>
   </select>
   <label for="end_depot">Finish Depot: </label>
   <select <%= 'disabled' if @shift.end_depot %> class='selectize' name="shift[end_depot]" id="end_depot">
-    <option></option>
-    <% Depot.all.each do |depot| %>
-      <option <%= 'selected' if @shift.end_depot == depot.id %> value="<%= depot.id %>"><%= depot.branch %></option>
-    <% end %>
+  <option></option>
+  <% Depot.all.each do |depot| %>
+  <option <%= 'selected' if @shift.end_depot == depot.id %> value="<%= depot.id %>"><%= depot.branch %></option>
+  <% end %>
   </select><br>
   <label for="comments">Anything To Report: </label><br>
   <textarea name="shift[comments]" id="comments" maxlength="250" placeholder="type max 250 characters"><%= @shift.comments %></textarea>
@@ -30,7 +31,7 @@
   <input type="submit" value="Finish Shift">
 
 
-</form>
-
-
+  </form>
+  
+  </div>
 </div>

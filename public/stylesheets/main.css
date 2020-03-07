@@ -129,6 +129,15 @@ input[type="radio"].radio{
   height: 0;
   width: 0;
 }
+#comments{
+    width: 65%;
+    margin-left: 12px;
+    border-radius: 5px;
+    color: var(--color-primary);
+    height: 5rem;
+    margin-top: 3rem;
+    resize: none;
+}
 
 .float-label label.radio {
   position: relative;
