@@ -279,7 +279,7 @@ width: 6rem;
 height: 3.6rem;
 text-align: center;
 vertical-align: middle;
-font-size:2rem;
+font-size: 3.4rem;
 }
 
 
@@ -301,6 +301,7 @@ overflow:hidden;
 transition:width .1s linear;
 -webkit-transform:translateZ(0) scale(1,1);
 z-index:1000;
+padding-top: 4rem;
 }
 
 .main-menu>ul {
