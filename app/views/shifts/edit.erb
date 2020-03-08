@@ -1,5 +1,7 @@
 
 <div class="main-container">
+  <div class="inner-container">
+  
     <h2 class='form-header'><%= @shift.end_depot ? 'Edit' : 'Finish' %> Shift</h2>
   <div class="form-container">
     <form action="/shifts/<%= @shift.id %>" method="post">
@@ -46,4 +48,5 @@
     </form>
 
   </div>
+</div>
 </div>

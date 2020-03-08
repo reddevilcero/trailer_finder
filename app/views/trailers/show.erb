@@ -30,19 +30,19 @@
     </div>
     <div class="depot info">
       <h2>Depot Base</h2>
-         <a href="/depots/<%= @trailer.depot.slug %>"><i class="fas fa-industry"></i></a>
+         <a href="/depots/<%= @trailer.depot.slug %>"><i class="fas fa-industry bigger"></i></a>
        <div><%= @trailer.depot.branch %></div>
     </div>
       <div class="location info">
-      <h3>Actual Trailer location</h3>
-      
-      <% if @trailer.shifts.last.end_depot  %>
-        <a href="/depots/<%= @trailer.shifts.last.end_depot.slug %>"><i class="fas fa-map-marker-alt"></i></a>
+      <h3>Trailer location</h3>
+      <% if @trailer.shifts.last && @trailer.shifts.last.end_depot  %>
+        <a href="/depots/<%= @trailer.shifts.last.end_depot.slug %>"><i class="fas fa-map-marker-alt bigger"></i></a>
         <div><%= @trailer.shifts.last.end_depot.branch %></div>
-      <% elsif @trailer.shifts.last.start_depot  %>
+      <% elsif @trailer.shifts.last && @trailer.shifts.last.start_depot  %>
         <a href="#"><i class="fa fa-route"></i></a>
         <h3>On Route</h3>
       <% else %>
+        <a href="/depots/<%= @trailer.depot.slug %>"><i class="fas fa-map-marker-alt bigger"></i></a>
         <div><%= @trailer.depot.branch %></div>
       <% end %>
     </div>

@@ -25,17 +25,7 @@ body {
   color: var(--primary-color)
 }
 /* basic reset */
-body::-webkit-scrollbar {
-width: 0.4rem;
-}
 
-body::-webkit-scrollbar-track {
-  background: rgb(20, 20, 20);
-}
-
-body::-webkit-scrollbar-thumb {
-  background: rgb(15, 195, 250);
-}
 a {
   color: inherit;
   text-decoration: none;
@@ -47,7 +37,19 @@ a {
   background-image: linear-gradient(to right top, rgba(0, 90, 135, 0.8),  hsla(198, 63%, 35%, 0.85)) ,url(https://images.unsplash.com/photo-1570449942860-bb66578faf58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);
   height: calc(100vh - 3rem);
   width: calc(100vw - 6rem);
-  display: flex;
+  overflow: auto;
+}
+
+.main-container::-webkit-scrollbar {
+width: 0.4rem;
+}
+
+.main-container::-webkit-scrollbar-track {
+  background: rgb(20, 20, 20);
+}
+
+.main-container::-webkit-scrollbar-thumb {
+  background: rgb(15, 195, 250);
 }
 
 .flex-container {
@@ -83,6 +85,7 @@ a {
 #new-shift {
   position: absolute;
   right: 2rem;
+  z-index: 100;
 }
 .display-info {
   display: flex;
@@ -136,7 +139,9 @@ a {
 }
 
 .form-container{
- display: grid;
+  grid-row: 2/5;
+  grid-column: 2/5;
+  display: grid;
   width: 100%;
   margin: auto;
   max-width: 55rem;
@@ -144,6 +149,7 @@ a {
   position: relative;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
  
 }
 
@@ -195,7 +201,7 @@ h2.form-header{
     position: absolute;
     font-weight: 900;
     left: 50%;
-    top: 17%;
+    top: 15%;
     font-size: 5rem;
     z-index: 1;
     transform: translate(-45%, -15%);
@@ -205,6 +211,7 @@ h2.form-header{
 input[type="radio"].radio{
   height: 0;
   width: 0;
+  display: none;
 }
 #comments{
     width: 65%;
@@ -219,7 +226,7 @@ input[type="radio"].radio{
 .float-label label.radio {
   position: relative;
   top: 6rem;
-  left: 1.5rem;
+  left: -0.5rem;
   cursor: pointer;
   background-color: #454545;
   color: white;
@@ -227,6 +234,7 @@ input[type="radio"].radio{
   border-radius: .3rem;
   transition: all 300ms ease-out;
   margin-bottom: 3rem;
+  margin-left: 2rem;
 }
 input[type="radio"]:checked + label{
   background-color: #58ba83;
@@ -348,6 +356,9 @@ height: 3.6rem;
 text-align: center;
 vertical-align: middle;
 font-size: 3.4rem;
+}
+.bigger {
+  font-size: 7rem;
 }
 
 
@@ -480,6 +491,7 @@ div.search-bar {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   padding: 1.5rem;
   border-radius: .5rem;
   box-shadow: 11px 10px 20px 2px rgba(2,9,11,1);
