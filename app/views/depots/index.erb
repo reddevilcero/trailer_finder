@@ -1,20 +1,27 @@
 <div class="main-container">
-<h1>This is the Model's index page.</h1>
-
-<% @depots.each do |depot| %>
-  <div class="depot_wrap">
-    <h2><%= depot.name %> <%= depot.location %></h2>
-    <p><%= depot.trailers.count %></p>
-    <% if depot.workers %>
-      <% depot.workers.each do |worker| %>
-        <% if worker.is_admin? %>
-          <p><%= worker.full_name %></p>
-        <% end %>
-      <% end %>
-    <% end %>
-
-    <button><a href="/depots/<%= depot.slug %>">More info</a></button>
+  <div class="inner-container">
+  <div class="header">
+    <h2>Find one of our <%= Depot.all.size %> Depots </h2>
   </div>
-<% end %>
-
+    <div class="search-bar">
+      <div class="float-label">
+        <select class='selectize' name="shift[depot_id]" id="magic_link" required>
+          <option></option>
+          <% Depot.all.each do |depot| %>
+            <option value="<%= depot.slug %>"><%= depot.branch %></option>
+          <% end %>
+        </select>
+      </div>
+      <a id='dinamic_link' class='btn submit link' href="">Find</a>
+    
+    </div>
+  
+  </div>
 </div>
+
+<script>
+document.getElementById("dinamic_link").addEventListener('click', function(){
+ let link = document.getElementById('magic_link').value
+ this.href += '/'+ link
+})
+</script>

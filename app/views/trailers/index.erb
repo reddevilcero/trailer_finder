@@ -6,7 +6,7 @@
     </div>
     <div class="search-bar">
       <div class="float-label">
-        <select class='selectize' name="shift[trailer_id]" id="trailer_link" required>
+        <select class='selectize' name="shift[trailer_id]" id="magic_link" required>
           <option></option>
           <% Trailer.all.each do |trailer| %>
             <option value="<%= trailer.identifier %>"><%= trailer.identifier %></option>
@@ -23,7 +23,7 @@
 
 <script>
 document.getElementById("dinamic_link").addEventListener('click', function(){
- let foo = document.getElementById('trailer_link').value
- this.href += '/'+foo
+ let link = document.getElementById('magic_link').value
+ this.href += '/'+link
 })
 </script>
