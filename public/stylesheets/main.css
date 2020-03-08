@@ -50,6 +50,41 @@ a {
   display: flex;
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 2rem;
+}
+.flex-container h3 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  order: 1;
+}
+.shift-container {
+    background-color: aliceblue;
+    height: 10vh;
+    margin: 1rem 0;
+    border-radius: .5rem;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+                0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    transition: all 600ms;
+}
+.shift-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 1),
+              0 17px 50px 0 rgba(0, 0, 0, 1);
+}
+#new-shift {
+  position: absolute;
+  right: 2rem;
+}
+
+
+
 
 /* LOGIN / SIGNUP Styles */
 .index-container {
