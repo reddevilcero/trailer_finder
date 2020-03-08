@@ -8,11 +8,30 @@
     <% if !@shifts.empty? %>
       <% @shifts.each do |shift| %>
         <div class="shift-container">
-      <%# binding.pry %>
-        <p><%= shift.created_at.strftime('%a %-d %B') %></p>
-        <p><%= shift.trailer.identifier %></p>
-        <p><%= shift.comments %></p>
+        <div class="display-info">
+          <h5>Date</h5>
+          <p><%= shift.created_at.strftime('%A %-d %B') %></p>
+        </div>
+        <div class="display-info">
+          <h5>Trailer</h5>
+          <a href="/trailers/<%= shift.trailer.identifier %>"><p><%= shift.trailer.identifier %></p></a>
+        </div>
+        <div class="display-info">
+          <h5>From</h5>
+          <a href="/depots/<%= shift.start_depot.branch %>"><p><%= shift.start_depot.branch %></p></a>
+        </div>
+        <div class="display-info">
+          <h5>To</h5>
+          <p><%= !shift.incomplete? ? shift.end_depot.branch : 'Incomplete' %></p>
+        </div>
+        <div class="display-info">
+          <a class='btn submit edit' href="/shifts/<%= shift.id %>/edit"><%= !shift.incomplete? ? 'EDIT' : 'FINISH IT' %></a>
+
+        </div>
         
+        
+        
+
         
         </div>
       <% end %>

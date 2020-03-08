@@ -72,6 +72,8 @@ a {
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
                 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     transition: all 600ms;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 .shift-container:hover {
   transform: translateY(-5px);
@@ -82,7 +84,32 @@ a {
   position: absolute;
   right: 2rem;
 }
-
+.display-info {
+  display: flex;
+  flex-direction: column;
+  font-weight: 900;
+}
+ .display-info:last-child {
+   justify-content: center;
+    align-items: center;
+}
+.display-info h5 {
+    color: var(--bg-prymary);
+    text-align: center;
+    font-size: 2rem;
+    
+    margin-bottom: 1rem;
+}
+.display-info p {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  transition: all 200ms;
+}
+.display-info a:hover p {
+  color: var(--contrast-color);
+  transform: scale(1.1);
+}
 
 
 

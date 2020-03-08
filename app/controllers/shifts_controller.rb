@@ -45,8 +45,13 @@ class ShiftsController < ApplicationController
       shift = Shift.new(params[:shift])
       shift.start_depot= Depot.find_by(id:params[:start_depot])
       shift.end_depot = Depot.find_by(id:params[:end_depot])
-      shift.save
-      redirect "/shifts/#{shift.id}"
+      if shift.save
+        flash[:success] ='New Shift Successfully created'
+        redirect "/shifts/#{shift.id}"
+      else
+        status 500
+        erb :'errors/500'
+      end
     else
       status 403
       erb :"errors/403"
@@ -58,15 +63,20 @@ class ShiftsController < ApplicationController
 
     if is_logged_in?(session) && current_user(session).rol == 'driver'
       shift = Shift.find_by_id(params[:id])
-      shift.update(params[:shift])
-      if shift.incomplete?
-        shift.end_depot = Depot.find_by(id:params[:end_depot])
-        shift.save
+      if shift.update(params[:shift])
+        if shift.incomplete?
+          shift.end_depot = Depot.find_by(id:params[:end_depot])
+          shift.save
+        end
+        flash[:success] ='Shift Successfully Updated'
+        redirect "/shifts/#{shift.id}"
+      else
+        status 500
+        erb :'errors/500'
       end
-      redirect "/shifts/#{shift.id}"
     else
-      status 404
-      erb :"errors/404"
+      status 403
+      erb :"errors/403"
     end
   end
 

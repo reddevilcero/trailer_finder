@@ -72,7 +72,7 @@ class TrailersController < ApplicationController
     if is_logged_in?(session) && current_user(session).is_admin?
       trailer = Trailer.find_by(identifier: params[:identifier])
       if trailer.update(params[:trailer])
-        flash[:success] ='Trailer Successfully Update'
+        flash[:success] ='Trailer Successfully Updated'
         redirect "/trailers/#{trailer.identifier}"
       else
         flash[:error] = trailer.errors.full_messages.first
