@@ -30,28 +30,35 @@
     </div>
     <div class="depot info">
       <h2>Depot Base</h2>
-        <h3><i class="fas fa-industry"></i></h3>
+         <a href="/depots/<%= @trailer.depot.slug %>"><i class="fas fa-industry"></i></a>
        <div><%= @trailer.depot.branch %></div>
     </div>
       <div class="location info">
       <h3>Actual Trailer location</h3>
-      <i class="fas fa-map-marker-alt"></i>
-      <% if false %>
-       <div><%= @trailer.shifts.last.end_depot.branch %></div>
+      
+      <% if @trailer.shifts.last.end_depot  %>
+        <a href="/depots/<%= @trailer.shifts.last.end_depot.slug %>"><i class="fas fa-map-marker-alt"></i></a>
+        <div><%= @trailer.shifts.last.end_depot.branch %></div>
+      <% elsif @trailer.shifts.last.start_depot  %>
+        <a href="#"><i class="fa fa-route"></i></a>
+        <h3>On Route</h3>
       <% else %>
         <div><%= @trailer.depot.branch %></div>
       <% end %>
     </div>
   </div>
-  <div class="edit-delete">
-    <% if current_user(session).is_admin? %>
+  
+  <% if current_user(session).is_admin? %>
+    <div class="edit-delete">
       <a class='btn submit edit' href="/trailers/<%= @trailer.identifier %>/edit">EDIT</a>
+      <a class='btn submit edit new' href="/trailers/new">NEW</a>
       <form action="/trailers/<%= @trailer.identifier %>/delete" method="post">
         <input type="hidden" name="_method" id='hidden' value='delete'>
         <input class='btn submit edit delete' type="submit" value="DELETE">
       </form>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+  
   
 
   </div>
