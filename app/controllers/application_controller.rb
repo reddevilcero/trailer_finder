@@ -10,6 +10,9 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'pair_secret'
     register Sinatra::Flash
   end
+  get '/404' do
 
+    erb :'/errors/404'
+  end
 
 end

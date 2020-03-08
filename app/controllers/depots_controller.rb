@@ -5,6 +5,7 @@ class DepotsController < ApplicationController
       @depots = Depot.all
       erb :"/depots/index"
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end
@@ -14,6 +15,7 @@ class DepotsController < ApplicationController
     if is_logged_in?(session) && current_user(session).is_admin?
       erb :"/depots/new"
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end
@@ -30,6 +32,7 @@ class DepotsController < ApplicationController
       end
       redirect "/depots"
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end
@@ -38,15 +41,16 @@ class DepotsController < ApplicationController
 
   get "/depots/:slug" do
     if is_logged_in?(session)
-       @permission = is_logged_in?(session) && current_user(session).is_admin?
       @depot = Depot.find_by_slug(params[:slug])
       if @depot
        erb :"/depots/show"
       else
+        flash[:error] = 'Upps not page finded.'
         status 404
         erb :'errors/404'
       end
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end
@@ -64,6 +68,7 @@ class DepotsController < ApplicationController
         erb :'errors/404'
       end
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end
@@ -81,7 +86,8 @@ class DepotsController < ApplicationController
       end
       redirect "/depots/#{depot.slug}"
     else
-       status 403
+      flash[:error] = 'You need To be logged'
+      status 403
       erb :'errors/403'
     end
   end
