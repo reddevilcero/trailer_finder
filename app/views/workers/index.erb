@@ -1,0 +1,28 @@
+<div class="main-container">
+  <div class="inner-container">
+    <div class="header">
+  <h2>Find one of our <%= Worker.all.size %> Workers </h2>
+    </div>
+    <div class="search-bar">
+      <div class="float-label">
+        <select class='selectize' name="shift[trailer_id]" id="magic_link" required>
+          <option></option>
+          <% Worker.all.each do |worker| %>
+            <option value="<%= worker.id %>"><%= worker.full_name %></option>
+          <% end %>
+        </select>
+      </div>
+      <a id='dinamic_link' class='btn submit link' href="">Find</a>
+    
+    </div>
+  
+  </div>
+
+</div>
+
+<script>
+document.getElementById("dinamic_link").addEventListener('click', function(){
+ let link = document.getElementById('magic_link').value
+ this.href = '/profile/'+ link + '/edit'
+})
+</script>

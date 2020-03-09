@@ -1,8 +1,11 @@
 <div class="main-container">
+  <div class="inner-container">
+  
+ 
   <% if @worker.rol.nil? %>
-    <h2 class='form-header' >Complet your profile</h2>
+    <h2 class='form-header profile' >Complet your profile</h2>
     <% else %>
-     <h2 class='form-header' >Edit your profile</h2>
+     <h2 class='form-header profile' >Edit your profile</h2>
   <% end %>
   <div class="form-container">
     <form action="/profile/<%= @worker.id %>" method="POST">
@@ -25,7 +28,7 @@
         <label for="license">license </label>
       </div>
       <div class="float-label">
-        <input  <%= 'disabled' if @worker.seniority %> type="month" name="worker[seniority]" id="seniority" value= <%= @worker.seniority || Time.now.strftime("%Y-%m") %>>
+        <input  <%= 'disabled' if @worker.seniority %> type="date" name="worker[seniority]" id="seniority" value= <%= @worker.seniority || Time.now.strftime("%Y-%m") %>>
         <label class='valid' for="seniority">Seniority </label>
       </div>
 
@@ -64,3 +67,4 @@ document.getElementById("is_admin").value = this.value == 'admin';
 </script>
   </div>
 </div>
+ </div>

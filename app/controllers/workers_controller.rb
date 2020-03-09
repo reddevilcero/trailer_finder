@@ -55,7 +55,7 @@ class WorkersController < ApplicationController
   end
 
   get '/profile/:id/edit' do
-    if is_logged_in?(session) && params[:id].to_i == session[:id] #|| current_user(session).is_admin?
+    if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
       @worker = Worker.find_by_id(params[:id])
       if @worker
         erb :"workers/edit"
@@ -93,6 +93,15 @@ class WorkersController < ApplicationController
   get '/logout' do
     session.clear
     redirect '/'
+  end
+
+  get '/workers' do
+    if is_logged_in?(session) && current_user(session).is_admin?
+       erb :'workers/index'
+    else
+      status 403
+      erb :'errors/403'
+    end
   end
   
 end
