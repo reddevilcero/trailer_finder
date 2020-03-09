@@ -791,3 +791,36 @@ h2.header {
   font-size: 2.5rem;
   padding: 5px 35px;
 }
+
+.bg-img {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 3rem);
+  z-index: 1000;
+  background:
+    linear-gradient(to right top, rgba(0, 90, 135, 0.2), hsla(198, 63%, 35%, 0.25)),
+    url(http://www.reactiongifs.us/wp-content/uploads/2015/04/nothing_to_see_here_naked_gun.gif) no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
+.content {
+   z-index: 1000;
+  font-family: 'Avenir-Next', Avenir, Helvetica, sans-serif;
+  color: #fff;
+  position: absolute;
+  left: 5%;
+  
+}
+
+h1 {
+  font-size: 160px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 0;
+  max-width: 700px;
+  font-size: 30px;
+  width: 90%;
+}
