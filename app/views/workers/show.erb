@@ -15,7 +15,9 @@
       <p><%= @worker.license %></p>
     </div>
     <div class="profile info stats">
-      <h2 class='header' >Profile stats</h2>
+    <h2 class='header' >Profile stats</h2>
+    <% if !@worker.shifts.empty? %>
+          
       <h2>Total shifts</h2>
       <p><%= @worker.shifts.count %></p>
       <h2 class='header'>Last shift</h2>
@@ -27,6 +29,11 @@
       <p><%= @worker.shifts.last.trailer.identifier %></p>
           <a id='btn-profile' class='btn submit edit'
           href="/shifts/<%= @worker.shifts.last.id %>"><%= !@worker.shifts.last.incomplete? ? 'EDIT' : 'FINISH IT' %></a>
+
+      
+    <% else %>
+      <h2>NO SHIFTS YET</h2>      
+    <% end %>
     </div>
   </div>
 </div>

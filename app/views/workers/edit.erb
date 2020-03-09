@@ -3,9 +3,9 @@
   
  
   <% if @worker.rol.nil? %>
-    <h2 class='form-header profile' >Complet your profile</h2>
+    <h2 class='form-header h2-header' >Complet your profile</h2>
     <% else %>
-     <h2 class='form-header profile' >Edit your profile</h2>
+     <h2 class='form-header h2-header' >Edit your profile</h2>
   <% end %>
   <div class="form-container">
     <form action="/profile/<%= @worker.id %>" method="POST">
@@ -31,8 +31,8 @@
         <input  <%= 'disabled' if @worker.seniority %> type="date" name="worker[seniority]" id="seniority" value= <%= @worker.seniority || Time.now.strftime("%Y-%m") %>>
         <label class='valid' for="seniority">Seniority </label>
       </div>
-
-      <div class="float-label">
+  <% if current_user(session).is_admin? %>
+    <div class="float-label">
         <select class='selectize-input' name="worker[rol]" id="rol" required>
           <option></option>
           <% Role.all.each do |rol| %>
@@ -50,6 +50,8 @@
         </select>
         <label class='valid especial' for="depot">Select or type your Depot</label>
       </div>
+  <% end %>
+      
    
 
 

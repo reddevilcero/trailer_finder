@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_115451) do
+ActiveRecord::Schema.define(version: 2020_03_09_183423) do
 
   create_table "depots", force: :cascade do |t|
     t.string "name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_115451) do
     t.string "email"
     t.string "password_digest"
     t.boolean "is_admin?", default: false
-    t.string "rol"
+    t.string "rol", default: "driver"
     t.string "seniority"
     t.string "license"
     t.datetime "created_at", null: false

@@ -237,7 +237,7 @@ h2.form-header{
     transform: translate(-45%, -15%);
     color: var(--contrast-color);
 }
-h2.form-header.profile{
+h2.form-header.h2-header{
     top: 9%
 }
 
@@ -635,6 +635,8 @@ div.edit-delete{
   grid-column: 1/3;
   display: flex;
   flex-direction: column;
+  border-radius: 3rem;
+  margin-right: .5rem;
   
 }
 
@@ -646,6 +648,8 @@ div.edit-delete{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  border-radius: 3rem;
+  margin-left: .5rem;
 }
 .info-container h1 {
   font-size: 5rem;
@@ -677,8 +681,6 @@ div.edit-delete{
   height: 100%;
   padding: 1rem;
   border-radius: 2rem;
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
-   0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .option {
   font-size: 2rem;
