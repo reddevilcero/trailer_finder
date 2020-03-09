@@ -1,53 +1,45 @@
-
 <div class="main-container">
-  
   <div class="inner-container">
-  <h2 class='form-header'>New Shift Record</h2>
-  <div class="form-container">
-    <form action="/shifts" method="post">
-      <input type="hidden" name="shift[worker_id]" value="<%= session[:id] %>">
-      <div class="float-label">
-        <select class='selectize' name="shift[trailer_id]" id="trailer_id" required>
-          <option></option>
-          <% Trailer.all.each do |trailer| %>
+    <h2 class='form-header'>New Shift Record</h2>
+    <div class="form-container">
+      <form action="/shifts" method="post">
+        <input type="hidden" name="shift[worker_id]" value="<%= session[:id] %>">
+        <div class="float-label">
+          <select class='selectize' name="shift[trailer_id]" id="trailer_id" required>
+            <option></option>
+            <% Trailer.all.each do |trailer| %>
             <option value="<%= trailer.id %>"><%= trailer.identifier %></option>
-          <% end %>
-        </select>
-        <label class='valid especial' for="trailer_id">Select Your Trailer</label>
-      </div>
-      <div class="float-label">
-        <select class='selectize' name="start_depot" id="start_depot" required>
-          <option></option>
-          <% Depot.all.each do |depot| %>
+            <% end %>
+          </select>
+          <label class='valid especial' for="trailer_id">Select Your Trailer</label>
+        </div>
+        <div class="float-label">
+          <select class='selectize' name="start_depot" id="start_depot" required>
+            <option></option>
+            <% Depot.all.each do |depot| %>
             <option value="<%= depot.id %>"><%= depot.branch %></option>
-          <% end %>
-        </select>
-        <label class='valid especial' for="start_depot">Select Start Depot</label>
-      </div>
-      <div class="float-label">
-        <select class='selectize' name="end_depot" id="end_depot">
-          <option></option>
-          <% Depot.all.each do |depot| %>
+            <% end %>
+          </select>
+          <label class='valid especial' for="start_depot">Select Start Depot</label>
+        </div>
+        <div class="float-label">
+          <select class='selectize' name="end_depot" id="end_depot">
+            <option></option>
+            <% Depot.all.each do |depot| %>
             <option value="<%= depot.id %>"><%= depot.branch %></option>
-          <% end %>
-        </select>
-        <label class='valid especial' for="end_depot">Select Finish Depot</label>
-      </div>      
-      
-      <div class="float-label">
-        <textarea name="shift[comments]" id="comments" maxlength="250" placeholder="type max 250 characters"></textarea>
-        <label class='valid especial' for="comments">Anything To Report: </label>
-      </div>
-    
-      
-      <div class="float-label">
-        <input class='btn submit' type="submit" value="Start Shift">
-      </div>
-
-
-    </form>
-
+            <% end %>
+          </select>
+          <label class='valid especial' for="end_depot">Select Finish Depot</label>
+        </div>
+        <div class="float-label">
+          <textarea name="shift[comments]" id="comments" maxlength="250"
+            placeholder="type max 250 characters"></textarea>
+          <label class='valid especial' for="comments">Anything To Report: </label>
+        </div>
+        <div class="float-label">
+          <input class='btn submit' type="submit" value="Start Shift">
+        </div>
+      </form>
     </div>
-  
   </div>
 </div>
