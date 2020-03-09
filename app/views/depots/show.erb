@@ -2,7 +2,13 @@
   <div class="inner-container">
     <div class="depot-container">
       <div class="depot-info">
-        <h2>Depot Info</h2>
+        <h1>Depot Info</h1>
+        <h2>Branch</h2>
+        <p><%= @depot.name %></p>
+        <h2>Location</h2>
+        <p><%= @depot.location %></p>
+        <h2>Transport Manager</h2>
+        <p><%= @depot.workers.first.full_name %></p>
       </div>
       <div class="depot-trailers">
         <h2>Depot Trailers <%= @depot.depot_trailers.size %></h2>

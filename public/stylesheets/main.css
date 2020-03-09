@@ -593,6 +593,7 @@ div.edit-delete{
 }
 
 .depot-container {
+  text-align: center;
   background-color:var(--bg-prymary);
   grid-row: 1/6;
   grid-column: 1/-1;
@@ -625,12 +626,29 @@ div.edit-delete{
   flex-direction: column;
   justify-content: space-around;
 }
-.depot-trailers h2 {
-  text-align: center;
+.depot-container h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--bg-prymary);
+}
+.depot-container h2{
+
   text-transform: uppercase;
   color: var(--color-primary);
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 3rem;
+}
+.depot-container p {
+
+  text-transform: uppercase;
+  color: var(--contrast-color);
+  font-weight: 400;
+  font-size: 3rem;
+  background-color:var(--bg-prymary);
+  border-radius: 5rem;
+  margin-left: 1rem;
+
 }
 
 
@@ -639,4 +657,9 @@ div.edit-delete{
   height: 100%;
   padding: 1rem;
   border-radius: 2rem;
+}
+.option {
+  font-size: 2rem;
+  font-weight: 900;
+
 }
