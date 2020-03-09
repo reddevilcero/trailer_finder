@@ -42,6 +42,7 @@ class DepotsController < ApplicationController
   get "/depots/:slug" do
     if is_logged_in?(session)
       @depot = Depot.find_by_slug(params[:slug])
+      # @parked = @depot.parked_trailers
       if @depot
        erb :"/depots/show"
       else
