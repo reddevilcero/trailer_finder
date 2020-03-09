@@ -1,7 +1,19 @@
 <div class="main-container">
 <div class="inner-container">
   <div class="info-container">
+  <div class="shift-info">
+  <h1>Shift info</h1>
+  <p>shift number:<br><%= @shift.id %></p>
+  <p>Trailer:<br><%= @shift.trailer.identifier %></p>
+  <p>Departure depot: <br> <%= @shift.start_depot.branch %></p>
+  <p>Arrival depot: <br><%= !@shift.incomplete? ? @shift.end_depot.branch : 'On Route' %></p>
+  <p>date: <br><%= @shift.created_at %></p>
+  <% if !@shift.comments.empty? %>
+    <p>comments: <br><%= @shift.comments %></p>
+  <% end %>
   
+  </div>
+
   </div>
 </div>
 

@@ -22,7 +22,7 @@
       <h2>From</h2>
       <p><%=  @worker.shifts.last.start_depot.branch %></p>
       <h2>to</h2>
-      <p><%= !@worker.shifts.last.incomplete? ? @worker.shifts.last.end_depot.brach : 'On Route'  %></p>
+      <p><%= !@worker.shifts.last.incomplete? ? @worker.shifts.last.end_depot.branch : 'On Route'  %></p>
       <h2>with Trailer</h2>
       <p><%= @worker.shifts.last.trailer.identifier %></p>
           <a id='btn-profile' class='btn submit edit'

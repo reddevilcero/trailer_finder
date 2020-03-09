@@ -63,6 +63,12 @@ width: 0.4rem;
 .selectize-dropdown-content::-webkit-scrollbar-thumb {
   background: rgb(15, 195, 250);
 }
+
+.shift-info::-webkit-scrollbar {
+  display: none;
+}
+
+
 .selectize-dropdown-content {
   border: none;
   outline: none;
@@ -611,13 +617,11 @@ div.edit-delete{
 
 .info-container {
   text-align: center;
-  background-color:var(--bg-prymary);
+
   grid-row: 1/6;
   grid-column: 1/-1;
   margin: 3rem;
   border-radius: 1rem;
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
-              0 17px 50px 0 rgba(0, 0, 0, 0.19);
   display: grid;
   grid-template: repeat(4, 1fr) / repeat(4, 1fr);
 }
@@ -673,6 +677,8 @@ div.edit-delete{
   height: 100%;
   padding: 1rem;
   border-radius: 2rem;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+   0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .option {
   font-size: 2rem;
@@ -705,4 +711,24 @@ h2.header {
 #btn-profile{
   align-self: center;
   color: var(--bg-prymary);
+}
+
+.shift-info{
+  margin: 3rem;
+  background-color: aliceblue;
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5rem;
+ box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+             0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  margin: 0 auto;
+  min-width: 55rem;
+  max-width: 65rem;
+  overflow: auto;
+}
+.shift-info p {
+  font-size: 2.5rem;
+  padding: 5px 35px;
 }
