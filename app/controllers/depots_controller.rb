@@ -99,6 +99,7 @@ class DepotsController < ApplicationController
       depot.destroy
       redirect "/depots"
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end

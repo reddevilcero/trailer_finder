@@ -16,6 +16,7 @@ class TrailersController < ApplicationController
       erb :"/trailers/new"
     else
       status 403
+      flash[:error] = 'You need To be logged'
       erb :'errors/403'
     end
     
@@ -34,6 +35,7 @@ class TrailersController < ApplicationController
       end
     else
       status 403
+      flash[:error] = 'You need To be logged'
       erb :'errors/403'
     end
   end
@@ -48,6 +50,7 @@ class TrailersController < ApplicationController
         erb :'errors/404'
       end
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end
@@ -63,6 +66,7 @@ class TrailersController < ApplicationController
         erb :'404'
       end
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end
@@ -79,11 +83,10 @@ class TrailersController < ApplicationController
         redirect "/trailers/#{params[:identifier]}/edit"
       end
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end
-
-    
   end
 
   delete "/trailers/:identifier/delete" do
@@ -93,6 +96,7 @@ class TrailersController < ApplicationController
       flash[:warning] = "The Trailer #{params[:identifier]} has been delete"
       redirect "/trailers"
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :'errors/403'
     end

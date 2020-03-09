@@ -5,6 +5,7 @@ class ShiftsController < ApplicationController
       @shifts = Shift.all.select{|s| s.worker_id == session[:id]}
       erb :'shifts/index'
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :"errors/403"
     end
@@ -14,6 +15,7 @@ class ShiftsController < ApplicationController
     if is_logged_in?(session) && current_user(session).rol == 'driver'
       erb :'/shifts/new'
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :"errors/403"
     end
@@ -29,6 +31,7 @@ class ShiftsController < ApplicationController
         erb :"errors/404"
       end
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :"errors/403"
     end
@@ -53,12 +56,11 @@ class ShiftsController < ApplicationController
         erb :'errors/500'
       end
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :"errors/403"
     end
-
   end
-
   patch '/shifts/:id' do
 
     if is_logged_in?(session) && current_user(session).rol == 'driver'
@@ -75,13 +77,14 @@ class ShiftsController < ApplicationController
         erb :'errors/500'
       end
     else
+      flash[:error] = 'You need To be logged'
       status 403
       erb :"errors/403"
     end
   end
 
-  delete '/shifts/:id/delete' do
-    
-  end
+  # delete '/shifts/:id/delete' do
+    # not sure if make it
+  # end
 
 end
