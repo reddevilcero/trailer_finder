@@ -1,7 +1,33 @@
 <div class="main-container">
 <div class="inner-container">
   <div class="info-container">
-  
+    <div class="profile info">
+      <h2 class='header'>Profile info</h2>
+      <h2>first name</h2>
+      <p><%= @worker.first_name %></p>
+      <h2>last name</h2>
+      <p><%= @worker.last_name %></p>
+      <h2>email</h2>
+      <p><%= @worker.email %></p>
+      <h2>seniority</h2>
+      <p><%= @worker.seniority %></p>
+      <h2>license</h2>
+      <p><%= @worker.license %></p>
+    </div>
+    <div class="profile info stats">
+      <h2 class='header' >Profile stats</h2>
+      <h2>Total shifts</h2>
+      <p><%= @worker.shifts.count %></p>
+      <h2 class='header'>Last shift</h2>
+      <h2>From</h2>
+      <p><%=  @worker.shifts.last.start_depot.branch %></p>
+      <h2>to</h2>
+      <p><%= !@worker.shifts.last.incomplete? ? @worker.shifts.last.end_depot.brach : 'On Route'  %></p>
+      <h2>with Trailer</h2>
+      <p><%= @worker.shifts.last.trailer.identifier %></p>
+          <a id='btn-profile' class='btn submit edit'
+          href="/shifts/<%= @worker.shifts.last.id %>"><%= !@worker.shifts.last.incomplete? ? 'EDIT' : 'FINISH IT' %></a>
+    </div>
   </div>
 </div>
 
