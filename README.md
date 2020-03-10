@@ -1,4 +1,5 @@
 # Welcome to my web app Trailer Finder
+## Getting Started
 
 this app has been created with the intention of help business in the transport industry but from the driver view.
 you can check this app as :
@@ -8,6 +9,21 @@ Admin: Admin@test.com  Password: 0000Driver: Web@Master.com  Password: 0000
 you can Clone or fork this repository and use straight away as the DB is already seeded and migrated.
 if you want to create ad new DB just delete the actual one and run in your terminal rake db:migrate to start with
 a new DB.
+
+
+### Installing
+
+Run 
+```
+bundle install
+```
+
+Run 
+```
+shotgun -O
+```
+and a tab in your default browser will start the app at http://localhost;9393 .
+
 
 you can see how the app works in this [YouTube video](https://youtu.be/g5ACFU5serY) so if you have any doubts please not heritage to ask.
 
