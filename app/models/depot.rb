@@ -1,8 +1,6 @@
 class Depot < ActiveRecord::Base
   has_many :trailers
   has_many :workers
-  # has_many :end_depot
-  # has_many :start_depot
 
 
    def depot_trailers
