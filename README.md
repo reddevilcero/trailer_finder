@@ -19,8 +19,7 @@ you can see how the app works in this [YouTube video](https://youtu.be/g5ACFU5se
  
  # SINATRA at The MVC stadium
 
-<center><img src="https://i.imgur.com/cbEQNGv.png" alt="drawing" width="600"/></center>
-
+<center><img src="https://i.imgur.com/sFgpJwQ.png" alt="drawing" width="600"/></center>
 
 This is my first full-stack project I ever I did, well I notice that from now on I will have a lot of first times as when more a learn more I see what little I know, and I love it because I always liked the challenges and be out of my comfort zone.
 
