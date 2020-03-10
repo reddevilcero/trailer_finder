@@ -2,7 +2,7 @@ class WorkersController < ApplicationController
 
   get '/' do
     if is_logged_in?(session)
-      redirect "profile/#{session[:id]}"
+      redirect "profiles/#{session[:id]}"
     end
     erb :index
   end
@@ -12,7 +12,7 @@ class WorkersController < ApplicationController
       worker = Worker.find_by(email:params[:email].downcase).try('authenticate', params[:password])
       if worker
         session[:id] = worker.id
-        redirect "/profile/#{worker.id}"
+        redirect "/profiles/#{worker.id}"
       else
         flash[:error] = 'Password or Email are incorrect, Please Try again'
         redirect '/'
@@ -28,9 +28,9 @@ class WorkersController < ApplicationController
       worker = Worker.new(params)
       if worker.save
         session[:id] = worker.id
-        redirect "/profile/#{worker.id}/edit"
+        redirect "/profiles/#{worker.id}/edit"
       else
-        flash[:error] = worker.errors.full_messages
+        flash[:error] = worker.errors.full_messages.first
         redirect '/'
       end
     else
@@ -40,7 +40,7 @@ class WorkersController < ApplicationController
 
   end
 
-  get '/profile/:id' do
+  get '/profiles/:id' do
     if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
       @worker = Worker.find_by_id(params[:id])
       if @worker
@@ -56,7 +56,7 @@ class WorkersController < ApplicationController
     end
   end
 
-  get '/profile/:id/edit' do
+  get '/profiles/:id/edit' do
     if is_logged_in?(session) && (params[:id].to_i == session[:id] || current_user(session).is_admin?)
       @worker = Worker.find_by_id(params[:id])
       if @worker
@@ -72,7 +72,7 @@ class WorkersController < ApplicationController
     end
   end
 
-  patch '/profile/:id' do
+  patch '/profiles/:id' do
     if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
       case params[:worker][:rol]
       when 'driver'
@@ -83,10 +83,10 @@ class WorkersController < ApplicationController
         worker = Worker.update(params[:id], params[:worker])
       end
       if worker.valid?
-        redirect "/profile/#{worker.id}"
+        redirect "/profiles/#{worker.id}"
       else
         flash[:error] = worker.errors.full_messages.first
-        redirect "/profile/#{params[:id]}/edit"
+        redirect "/profiles/#{params[:id]}/edit"
       end
     else
       flash[:error] = 'You need To be logged'
@@ -101,7 +101,7 @@ class WorkersController < ApplicationController
     redirect '/'
   end
 
-  get '/workers' do
+  get '/profiles' do
     if is_logged_in?(session) && current_user(session).is_admin?
        erb :'workers/index'
     else
@@ -109,6 +109,19 @@ class WorkersController < ApplicationController
       status 403
       erb :'errors/403'
     end
+  end
+
+  delete '/profiles/:id/delete' do
+      if is_logged_in?(session) && current_user(session).is_admin?
+        binding.pry
+        worker = Worker.find_by_id(params[:id])
+        worker.destroy
+        redirect '/profiles'
+      else
+        flash[:error] = 'You need To be logged'
+        status 403
+        erb :'errors/403'
+      end
   end
   
 end

@@ -8,4 +8,16 @@ class Shift < ActiveRecord::Base
   def incomplete?
     !self.end_depot
   end
+  def started_at
+    self.created_at.strftime("%H:%M %d-%m-%Y")
+  end
+
+  def finished_at
+    if self.updated_at-self.created_at > 0
+      self.updated_at.strftime("%H:%M %d-%m-%Y")
+    else
+      'On route'
+    end
+
+  end
 end

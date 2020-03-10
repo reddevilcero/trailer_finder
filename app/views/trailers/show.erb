@@ -23,7 +23,7 @@
             <h3>Nothing reported</h3>
           <% end %>
        </div>
-       <div><%= @trailer.shifts.last.worker.full_name %></div>
+       <div><%= @trailer.shifts.last.worker ? @trailer.shifts.last.worker.full_name : 'Ex-employee'%></div>
        <% else %>
         <h2>Brand New Trailer not used Yet</h2>
        <% end %>

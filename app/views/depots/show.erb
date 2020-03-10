@@ -24,13 +24,13 @@
             <a id='dinamic_link1' class='btn submit link' href="">Find</a>
           </div>
         </div>
-        <h2>Parked Trailers At Depot <%# @parked.size %></h2>
+        <h2>Parked Trailers At Depot <%= @trailers.size %></h2>
         <div>
           <div class="search-bar">
             <div class="float-label">
               <select class='selectize' name="shift[trailer_id]" id="magic_link2" required>
                 <option></option>
-                <% @depot.depot_trailers.each do |trailer| %>
+                <%  @trailers.each do |trailer| %>
                 <option value="<%= trailer.identifier %>"><%= trailer.identifier %></option>
                 <% end %>
               </select>

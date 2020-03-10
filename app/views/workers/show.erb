@@ -28,7 +28,7 @@
       <h2>with Trailer</h2>
       <p><%= @worker.shifts.last.trailer.identifier %></p>
           <a id='btn-profile' class='btn submit edit'
-          href="/shifts/<%= @worker.shifts.last.id %>"><%= !@worker.shifts.last.incomplete? ? 'EDIT' : 'FINISH IT' %></a>
+          href="/shifts/<%= @worker.shifts.last.id %>">Review It</a>
 
       
     <% else %>
@@ -36,6 +36,18 @@
     <% end %>
     </div>
   </div>
+    
+    <div class="edit-delete">
+      <a class='btn submit edit' href="/profiles/<%= @worker.id  %>/edit">EDIT</a>
+      <% if current_user(session).is_admin? %>
+        <form action="/profiles/<%= params[:id] %>/delete" method="post">
+          <input type="hidden" name="_method" id='hidden' value='delete'>
+          <input class='btn submit edit delete' type="submit" value="DELETE">
+        </form>
+      <% end %>
+
+    </div>
+
 </div>
 
 

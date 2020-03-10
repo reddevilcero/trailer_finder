@@ -466,15 +466,6 @@ nav.main-menu.expanded {
 
 }
 
-/* .main-menu .sub-menu {
-  display: none;
-}
-
-.main-menu a:hover + .sub-menu {
-  display: block;
-} */
-
-
 .main-menu .nav-text {
   position: relative;
   display: table-cell;

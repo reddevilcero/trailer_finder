@@ -44,18 +44,23 @@
             <span class='nav-text'> DEPOTS</span>
           </a>
         </li>
-        <li>
+        <% if current_user(session).rol == 'driver' %>
+                  <li>
           <a href="/shifts">
             <i class="fa fa-route fa-2x"></i>
             <span class='nav-text'> SHIFTS</span>
           </a>
         </li>
-        <li>
-          <a href="/workers">
+        <% end %>
+        <% if current_user(session).is_admin? %>
+                  <li>
+          <a href="/profiles">
             <i class="fa fa-users fa-2x"></i>
             <span class='nav-text'> WORKERS</span>
           </a>
         </li>
+        <% end %>
+
       </ul>
 
       <ul class="logout">
