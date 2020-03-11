@@ -10,10 +10,8 @@ class WorkersController < ApplicationController
   post '/login' do
     if !params_empty?(params)
       worker = Worker.find_by(email:params[:email].downcase).try('authenticate', params[:password])
-      binding.pry
       if worker
-        session[:user_id] = worker.id
-        binding.pry
+        session[:id] = worker.id
         redirect "/profiles/#{worker.id}"
       else
         flash[:error] = 'Password or Email are incorrect, Please Try again'
@@ -43,8 +41,7 @@ class WorkersController < ApplicationController
   end
 
   get '/profiles/:id' do
-    binding.pry
-    if is_logged_in?(session) && (params[:id].to_i == session[:id] || current_user(session).is_admin?)
+    if has_permission(params, session)
       @worker = Worker.find_by_id(params[:id])
       if @worker
         erb :'workers/show'
@@ -60,11 +57,12 @@ class WorkersController < ApplicationController
   end
 
   get '/profiles/:id/edit' do
-    if is_logged_in?(session) && (params[:id].to_i == session[:id] || current_user(session).is_admin?)
+    if has_permission(params, session)
       @worker = Worker.find_by_id(params[:id])
       if @worker
         erb :"workers/edit"
       else
+        flash[:error] = "this route doesn't"
         status 404
         erb :'errors/404'
       end
@@ -76,7 +74,7 @@ class WorkersController < ApplicationController
   end
 
   patch '/profiles/:id' do
-    if is_logged_in?(session) && (params[:id].to_i == session[:id] || current_user(session).is_admin?)
+    if has_permission(params, session)
       case params[:worker][:rol]
       when 'driver'
         worker = Driver.update(params[:id], params[:worker])
