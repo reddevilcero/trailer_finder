@@ -6,4 +6,5 @@ class Trailer < ActiveRecord::Base
   def actual_position
     shifts.last&.end_depot || 'On Route'
   end
+  
 end
