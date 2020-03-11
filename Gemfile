@@ -11,13 +11,3 @@ gem 'shotgun'
 gem 'bcrypt'
 gem "tux"
 gem  "sinatra-flash"
-
-group :developer, :test do
-  gem 'pry' 
-  gem 'sqlite3'
-  gem 'rspec'
-  gem 'capybara'
-  gem 'rack-test'
-  gem 'database_cleaner'
-  gem 'faker'
-end
