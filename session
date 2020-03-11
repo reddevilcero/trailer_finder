@@ -1,0 +1,13 @@
+=> [32m#<Worker:0x00007fffdd8f8d30[0m
+ id: [1;34m1[0m,
+ first_name: [31m[1;31m"[0m[31mWestmater[1;31m"[0m[31m[0m,
+ last_name: [31m[1;31m"[0m[31m[1;31m"[0m[31m[0m,
+ email: [31m[1;31m"[0m[31mweb@master.com[1;31m"[0m[31m[0m,
+ password_digest: [31m[1;31m"[0m[31m$2a$12$NEMpzKMa7p0QAUPaQVMfie7cFFFbGwWxpDl9hdNYmQQUlXdqH3m6a[1;31m"[0m[31m[0m,
+ is_admin?: [1;36mtrue[0m,
+ rol: [31m[1;31m"[0m[31mdriver[1;31m"[0m[31m[0m,
+ seniority: [31m[1;31m"[0m[31m2015-1[1;31m"[0m[31m[0m,
+ license: [31m[1;31m"[0m[31m123456[1;31m"[0m[31m[0m,
+ created_at: [1;34m2020[0m-[1;34m03[0m-[1;34m10[0m [1;34m11[0m:[1;34m58[0m:[1;34m12[0m [1;34;4mUTC[0m,
+ updated_at: [1;34m2020[0m-[1;34m03[0m-[1;34m10[0m [1;34m11[0m:[1;34m58[0m:[1;34m12[0m [1;34;4mUTC[0m,
+ depot_id: [1;36mnil[0m[32m>[0m
