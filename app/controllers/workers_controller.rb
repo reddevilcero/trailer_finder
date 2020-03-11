@@ -10,8 +10,10 @@ class WorkersController < ApplicationController
   post '/login' do
     if !params_empty?(params)
       worker = Worker.find_by(email:params[:email].downcase).try('authenticate', params[:password])
+      binding.pry
       if worker
-        session[:id] = worker.id
+        session[:user_id] = worker.id
+        binding.pry
         redirect "/profiles/#{worker.id}"
       else
         flash[:error] = 'Password or Email are incorrect, Please Try again'
@@ -41,6 +43,7 @@ class WorkersController < ApplicationController
   end
 
   get '/profiles/:id' do
+    binding.pry
     if is_logged_in?(session) && (params[:id].to_i == session[:id] || current_user(session).is_admin?)
       @worker = Worker.find_by_id(params[:id])
       if @worker

@@ -8,13 +8,13 @@ gem 'require_all'
 gem "pg" 
 gem 'thin'
 gem 'shotgun'
-gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem  "sinatra-flash"
-gem 'sqlite3'
 
-group :test do
+group :developer, :test do
+  gem 'pry' 
+  gem 'sqlite3'
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
