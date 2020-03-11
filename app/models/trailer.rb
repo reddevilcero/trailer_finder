@@ -5,10 +5,6 @@ class Trailer < ActiveRecord::Base
 
 
   def actual_position
-    if !self.shifts.last.nil? && self.shifts.last.end_depot
-      self.shifts.last.end_depot
-    else
-      'On Route'
-    end
+    shifts.last&.end_depot || 'On Route'
   end
 end
