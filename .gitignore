@@ -43,3 +43,4 @@ jspm_packages
 
 #ignore VScode files
 .vscode
+db/development.sqlite
