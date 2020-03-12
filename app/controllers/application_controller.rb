@@ -1,5 +1,4 @@
 require './config/environment'
-require 'securerandom'
 
 class ApplicationController < Sinatra::Base
   helpers Sinatra::Helpers
@@ -7,8 +6,8 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    enable :sessions            #why it does works???
-    set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
+    enable :sessions
+    set :session_secret, 'pair_secret'
     register Sinatra::Flash
   end
 

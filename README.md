@@ -1,4 +1,3 @@
-
 # Welcome to my web app Trailer Finder
 ## Getting Started
 
@@ -89,4 +88,3 @@ Whit that says I make **A LOT** of mistake, every time a change something somewh
 
 
 Happy Coding,
-

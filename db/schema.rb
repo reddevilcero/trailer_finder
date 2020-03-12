@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_183423) do
+ActiveRecord::Schema.define(version: 2020_03_11_195312) do
 
   create_table "depots", force: :cascade do |t|
     t.string "name"
@@ -22,11 +22,13 @@ ActiveRecord::Schema.define(version: 2020_03_09_183423) do
   create_table "shifts", force: :cascade do |t|
     t.string "comments"
     t.integer "worker_id"
-    t.integer "start_depot"
-    t.integer "end_depot"
+    t.integer "start_depot_id"
+    t.integer "end_depot_id"
     t.integer "trailer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["end_depot_id"], name: "index_shifts_on_end_depot_id"
+    t.index ["start_depot_id"], name: "index_shifts_on_start_depot_id"
   end
 
   create_table "trailers", force: :cascade do |t|
