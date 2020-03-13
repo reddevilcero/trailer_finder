@@ -41,7 +41,7 @@ class WorkersController < ApplicationController
   end
 
   get '/profiles/:id' do
-    if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
+    if is_logged_in?(session) && (params[:id].to_i == session[:id] || current_user(session).is_admin?)
       @worker = Worker.find_by_id(params[:id])
       if @worker
         erb :'workers/show'
@@ -62,6 +62,7 @@ class WorkersController < ApplicationController
       if @worker
         erb :"workers/edit"
       else
+        flash[:error] = "this route doesn't"
         status 404
         erb :'errors/404'
       end
@@ -73,7 +74,7 @@ class WorkersController < ApplicationController
   end
 
   patch '/profiles/:id' do
-    if is_logged_in?(session) && params[:id].to_i == session[:id] || current_user(session).is_admin?
+    if is_logged_in?(session) && (params[:id].to_i == session[:id] || current_user(session).is_admin?)
       case params[:worker][:rol]
       when 'driver'
         worker = Driver.update(params[:id], params[:worker])

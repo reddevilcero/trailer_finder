@@ -20,5 +20,9 @@ module Sinatra
     end 
   end
 
+  def has_permission(params, session)
+    is_logged_in?(session) && (params[:id].to_i == session[:id] || current_user(session).is_admin?)
+  end
+
   helpers Helpers
 end

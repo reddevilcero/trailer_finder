@@ -85,3 +85,6 @@ The views itself are not a problem, and I like to think about how to render what
 I have never been a person who has been good at drawing or creativity, I am not able to distinguish two types of blue if they are close in the RGB range, so I always knew it is going to be the most challenging part and where all my effort has to be the max to make the best I can.
 
 Whit that says I make **A LOT** of mistake, every time a change something somewhere breaks, I write **A LOT** of bad CSS and repeating my self. I am not happy with my code at all, but **I HAVE LEARN SO MUCH**, so I'm pretty sure I am going to be able to implement that new knowledge and experience in the future projects and my life in general.
+
+
+Happy Coding,
