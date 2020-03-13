@@ -49,7 +49,7 @@ class Depot < ActiveRecord::Base
     ).group(Shift.arel_table[:trailer_id]).includes(:trailer).map{|s| s.trailer}
   end
 
-  def sql_back
+  def sql_better
     sql = <<~SQL
     WITH rel_shifts AS (
       SELECT shifts.trailer_id, max(shifts.created_at)

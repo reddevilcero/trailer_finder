@@ -66,7 +66,7 @@ task :sql_better do # 0.013527716
 
     1000.times do
         depot = Depot.order('RANDOM()').first
-        depot.sql_back
+        depot.sql_better
     end
     puts (Time.now - start)/1000
 end
