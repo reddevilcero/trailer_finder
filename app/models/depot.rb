@@ -42,7 +42,7 @@ class Depot < ActiveRecord::Base
     [
       Shift.arel_table[:trailer_id], Shift.arel_table[:created_at].maximum
     ]
-    ).having(Shift.arel_table[:end_depot_id].eq(1)).joins(
+    ).having(Shift.arel_table[:end_depot_id].eq(id)).joins(
       Shift.arel_table.join(Trailer.arel_table).on(
       Shift.arel_table[:trailer_id].eq(Trailer.arel_table[:id])
     ).join_sources
