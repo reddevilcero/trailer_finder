@@ -5,6 +5,9 @@ default: &default
 development:
   <<: *default
   database: deployed_development
+  host: localhost
+  user: postgres
+  password: postgres
 production:
   <<: *default
   database: deployed_production

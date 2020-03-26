@@ -7,7 +7,7 @@ class CreateTableWorkers < ActiveRecord::Migration[5.2]
       t.string  :password_digest
       t.boolean :is_admin?
       t.string  :rol 
-      t.integer :seniority
+      t.date :seniority
       t.string  :license
       t.timestamps
     end
