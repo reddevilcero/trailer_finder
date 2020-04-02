@@ -13,6 +13,7 @@ gem "bcrypt"
 gem "tux"
 gem "sinatra-flash"
 gem "dotenv"
+gem "faker"
 
 group :test, :development do
   gem "sqlite3"
@@ -20,7 +21,7 @@ group :test, :development do
   gem "capybara"
   gem "rack-test"
   gem "database_cleaner"
-  gem "faker"
+ 
   gem "shotgun"
   gem "pry"
 end
