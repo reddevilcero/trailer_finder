@@ -1,12 +1,14 @@
 # Welcome to my web app Trailer Finder
 ## Getting Started
 
+## [Live demo](https://trailer-finder.herokuapp.com/)
+
 this app has been created with the intention of help business in the transport industry but from the driver view.
 you can check this app as :
 
 * Driver: Driver@test.com  Password: 0000
 * Admin: Admin@test.com  Password: 0000
-* Driver: Web@Master.com  Password: 0000
+* Driver/Admin: Web@Master.com  Password: 0000
 
 You can Clone or fork this repository and use straight away as the DB is already seeded and migrated.
 if you want to create ad new DB just delete the actual one and run in your terminal rake db:migrate to start with
