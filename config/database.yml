@@ -4,12 +4,12 @@ default: &default
   pool: 5
 development:
   <<: *default
-  database: deployed_development
+  database: Trailer_Finder_development
   host: localhost
-  user: postgres
+  user: development
   password: postgres
 production:
   <<: *default
-  database: deployed_production
+  database: Trailer_Finder_production
   username: deployed
   password: <%= ENV['POSTY_DATABASE_PASSWORD'] %>

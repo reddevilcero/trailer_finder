@@ -34,7 +34,7 @@ Worker.create(
   password: '0000',
   seniority: '2015-12'
 )
-50.times do 
+500.times do 
   Worker.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -47,14 +47,14 @@ Worker.create(
   )
 end
 branch = ['CML', 'Culina', 'Morgan Mclernon', 'Great Bear', 'Warrens', 'IPS', 'Robson' ]
-15.times do
+150.times do
   Depot.create(
     name: branch[rand(0...branch.size)],
     location: Faker::Address.city
   )
 end
 make = ["CARTWRIGHT", "KRONE", "MONTRACON", "SCHMITZ", "FRUEHAUF"]
-500.times do
+5000.times do
   Trailer.create(
     identifier: "#{(1..3).map{Array('A'..'Z')[rand(26)]}.join}#{rand(999)}",
     make: make[rand(0...make.size)],
@@ -65,7 +65,7 @@ make = ["CARTWRIGHT", "KRONE", "MONTRACON", "SCHMITZ", "FRUEHAUF"]
   )
 end
 
-5000.times do 
+20000.times do 
   Shift.create(
     worker_id: rand(1..500),
     start_depot: Depot.find_by_id(rand(1..30)),
